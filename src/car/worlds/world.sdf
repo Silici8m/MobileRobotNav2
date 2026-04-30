@@ -47,7 +47,6 @@
     </scene>
 
     <!--  MURS  -->
-
     <model name="wall_north">
       <static>true</static>
       <pose>0 10 0.5 0 0 0</pose>

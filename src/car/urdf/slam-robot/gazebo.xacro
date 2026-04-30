@@ -57,7 +57,11 @@
         <kd>10.0</kd>
         <minDepth>0.001</minDepth>
         <maxVel>0.1</maxVel>
-        <material>Gazebo/Blue</material>
+        <material>
+            <ambient>0.0 0.0 1.0 1</ambient>
+            <diffuse>0.0 0.0 1.0 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+        </material>
     </gazebo>
     
     <gazebo reference="rb_link">

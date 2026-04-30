@@ -30,7 +30,7 @@ install(TARGETS car_controller gt_node
   DESTINATION lib/${PROJECT_NAME})
 
 install(
-  DIRECTORY launch model config
+  DIRECTORY launch models config urdf worlds
   DESTINATION share/${PROJECT_NAME}
 )
 

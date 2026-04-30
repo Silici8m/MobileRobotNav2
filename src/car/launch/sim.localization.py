@@ -1,5 +1,7 @@
 import os
 
+from launch.actions import SetEnvironmentVariable
+
 import launch
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
@@ -17,8 +19,8 @@ from launch.actions import TimerAction
 
 
 packageName = "car"
-worldRelativePath            = "config/world.sdf"
-rvizConfigRelativePath       = "config/config.rviz"
+worldRelativePath            = "worlds/arena.sdf"
+rvizConfigRelativePath       = "config/rviz/config.rviz"
 controllerParamsRelativePath = "config/sim/controller_params.yaml"
 robotControllerRelativePath  = "config/sim/robot_controller.yaml"
 nav2ParamsRelativePath       = "config/sim/nav2_params.yaml"
@@ -42,7 +44,7 @@ def generate_launch_description():
             'xacro ',
             PathJoinSubstitution([
                 FindPackageShare(packageName), 
-                "model",
+                "urdf",
                 "localization-robot",
                 "robot.xacro"
             ])
@@ -70,6 +72,11 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+
+        SetEnvironmentVariable(
+            name='GZ_SIM_RESOURCE_PATH',
+            value=pkgPath
+        ),
         
         launch_ros.actions.SetParameter(name='use_sim_time', value=True),
 
@@ -140,7 +147,9 @@ def generate_launch_description():
         Node( 
             package='tf2_ros', 
             executable='static_transform_publisher', 
-            arguments=[ '0', '0', '0', '0', '0', '0', 'map', 'odom' ], 
+            arguments=['--x', '0', '--y', '0', '--z', '0',
+           '--roll', '0', '--pitch', '0', '--yaw', '0',
+           '--frame-id', 'map', '--child-frame-id', 'odom'], 
             parameters=[{'use_sim_time': True}], 
         ),
 
@@ -205,7 +214,8 @@ def generate_launch_description():
                 IncludeLaunchDescription(
                     PythonLaunchDescriptionSource(
                         PathJoinSubstitution([
-                            FindPackageShare("nav2_bringup"),
+                            # FindPackageShare("nav2_bringup"),
+                            FindPackageShare("car"),
                             "launch",
                             "bringup_launch.py"
                         ])
