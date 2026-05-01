@@ -1,6 +1,6 @@
 bt_navigator:
   ros__parameters:
-    global_frame: odom
+    global_frame: map
     robot_base_frame: base_footprint
     odom_topic: /odom
     bt_loop_duration: 10
@@ -41,7 +41,7 @@ controller_server:
     # Progress checker parameters
     progress_checker:
       plugin: "nav2_controller::SimpleProgressChecker"
-      required_movement_radius: 0.5
+      required_movement_radius: 0.3
       movement_time_allowance: 10.0
     # Goal checker parameters
     #precise_goal_checker:
@@ -85,16 +85,16 @@ controller_server:
       stateful: True
       critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
       BaseObstacle.scale: 0.05
-      PathAlign.scale: 40.0
+      PathAlign.scale: 0.0
       GoalAlign.scale: 20.0
       PathAlign.forward_point_distance: 0.1
       GoalAlign.forward_point_distance: 0.1
-      Oscillation.scale: 1.0
+      Oscillation.scale: 3.0
       Oscillation.oscillation_reset_dist: 0.1
       Oscillation.oscillation_reset_angle: 0.3
       PathDist.scale: 40.0
-      GoalDist.scale: 24.0
-      RotateToGoal.scale: 15.0
+      GoalDist.scale: 40.0
+      RotateToGoal.scale: 20.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
 
@@ -102,7 +102,7 @@ local_costmap:
   local_costmap:
     ros__parameters:
       update_frequency: 5.0
-      publish_frequency: 2.0
+      publish_frequency: 5.0
       global_frame: odom
       robot_base_frame: base_footprint
       rolling_window: true
@@ -113,8 +113,8 @@ local_costmap:
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.25
+        cost_scaling_factor: 2.0
+        inflation_radius: 0.3
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -143,9 +143,9 @@ local_costmap:
 global_costmap:
   global_costmap:
     ros__parameters:
-      update_frequency: 1.0
-      publish_frequency: 1.0
-      global_frame: odom
+      update_frequency: 5.0
+      publish_frequency: 5.0
+      global_frame: map
       robot_base_frame: base_footprint
       robot_radius: 0.2
       resolution: 0.01
@@ -170,8 +170,8 @@ global_costmap:
         map_subscribe_transient_local: True
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.0
-        inflation_radius: 0.2
+        cost_scaling_factor: 2.0
+        inflation_radius: 0.3
       always_send_full_costmap: True
 
 # The yaml_filename does not need to be specified since it going to be set by defaults in launch.
@@ -192,6 +192,7 @@ map_saver:
 planner_server:
   ros__parameters:
     expected_planner_frequency: 10.0
+    planner_plugins: ["GridBased"]
     GridBased:
       plugin: "nav2_smac_planner::SmacPlanner2D"  # Meilleur que NavFn
       tolerance: 0.25  # Réduit de 0.5
@@ -204,10 +205,10 @@ planner_server:
       angle_quantization_bins: 72
       analytic_expansion_ratio: 3.5
       analytic_expansion_max_length: 3.0
-      minimum_turning_radius: 0.40  # Ajustez selon votre robot
-      reverse_penalty: 2.0
+      minimum_turning_radius: 0.0  # Ajustez selon votre robot
+      reverse_penalty: 0.0
       change_penalty: 0.0
-      non_straight_penalty: 1.2
+      non_straight_penalty: 0.0
       cost_penalty: 2.0
       retrospective_penalty: 0.015
       lookup_table_size: 20.0
@@ -242,7 +243,7 @@ behavior_server:
     assisted_teleop:
       plugin: "nav2_behaviors::AssistedTeleop"
     local_frame: odom
-    global_frame: odom
+    global_frame: map
     robot_base_frame: base_footprint
     transform_tolerance: 0.1
     simulate_ahead_time: 2.0

@@ -25,7 +25,7 @@ controllerParamsRelativePath = "config/sim/controller_params.yaml"
 robotControllerRelativePath  = "config/sim/robot_controller.yaml"
 nav2ParamsRelativePath       = "config/sim/nav2_params.yaml"
 ekfConfigRelativePath        = "config/ekf.yaml"
-mapFileRelativePath          = "config/map/big_empty_map.yaml"
+mapFileRelativePath          = "config/map/map_cdfr_simple.yaml"
 
 def generate_launch_description():
 
@@ -45,7 +45,7 @@ def generate_launch_description():
             PathJoinSubstitution([
                 FindPackageShare(packageName), 
                 "urdf",
-                "localization-robot",
+                #"localization-robot",
                 "robot.xacro"
             ])
         ]),
@@ -120,7 +120,10 @@ def generate_launch_description():
             executable='create',
             arguments=[
                 '-name', 'simple_robot',
-                '-topic', 'robot_description'
+                '-topic', 'robot_description',
+                '-x', '0.3',
+                '-y', '0.3',
+                '-z', '0.0'
             ],
             parameters=[{
                 'use_sim_time': True
@@ -147,7 +150,7 @@ def generate_launch_description():
         Node( 
             package='tf2_ros', 
             executable='static_transform_publisher', 
-            arguments=['--x', '0', '--y', '0', '--z', '0',
+            arguments=['--x', '0.3', '--y', '0.3', '--z', '0',
            '--roll', '0', '--pitch', '0', '--yaw', '0',
            '--frame-id', 'map', '--child-frame-id', 'odom'], 
             parameters=[{'use_sim_time': True}], 
