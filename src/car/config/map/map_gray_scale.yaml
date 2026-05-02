@@ -1,6 +1,0 @@
-image: map_gray_scale.pgm
-resolution: 0.01        # 1 cm/px
-origin: [-1.1, -1.65, 0.0]   # = -(largeur/2), -(hauteur/2) pour centrer
-negate: 0
-occupied_thresh: 0.99
-free_thresh: 0.196

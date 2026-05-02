@@ -1,0 +1,17 @@
+material mat_floor_texture
+{
+  technique
+  {
+    pass
+    {
+      lighting off
+
+      texture_unit
+      {
+        texture map_image.png
+        tex_address_mode wrap
+        scale 0.05 0.05
+      }
+    }
+  }
+}

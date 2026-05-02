@@ -1,24 +1,13 @@
-lifecycle_manager:
-  ros__parameters:
-    autostart: true
-    node_names: ['controller_server', 'planner_server', 'behavior_server', 'bt_navigator', 'jenga_manager']
-    bond_timeout: 4.0
-    attempt_respawn_reconnection: true
-    bond_respawn_max_duration: 10.0
-    bond_heartbeat_period: 0.25
-    introspection_mode: "disabled"
-
-
 bt_navigator:
   ros__parameters:
-    global_frame: map
+    global_frame: odom
     robot_base_frame: base_footprint
     odom_topic: /odom
     bt_loop_duration: 10
     default_server_timeout: 40
     wait_for_service_timeout: 1000
     action_server_result_timeout: 900.0
-    navigators: ["navigate_to_pose", "navigate_through_poses"]
+    navigators: ["navigate_to_pose"] #, "navigate_through_poses"]
     navigate_to_pose:
       plugin: "nav2_bt_navigator::NavigateToPoseNavigator"
     navigate_through_poses:
@@ -52,7 +41,7 @@ controller_server:
     # Progress checker parameters
     progress_checker:
       plugin: "nav2_controller::SimpleProgressChecker"
-      required_movement_radius: 0.3
+      required_movement_radius: 0.5
       movement_time_allowance: 10.0
     # Goal checker parameters
     #precise_goal_checker:
@@ -63,8 +52,8 @@ controller_server:
     general_goal_checker:
       stateful: True
       plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.1
-      yaw_goal_tolerance: 0.1
+      xy_goal_tolerance: 0.04 # 0.25
+      yaw_goal_tolerance: 0.15 # ?
     FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
       debug_trajectory_details: False
@@ -72,40 +61,41 @@ controller_server:
       min_vel_y: -0.5
       max_vel_x: 0.5
       max_vel_y: 0.5
-      max_vel_theta: 1.0
+      max_vel_theta: 1.5
       min_speed_xy: 0.05
       max_speed_xy: 0.5
-      min_speed_theta: -1.0
-      acc_lim_x: 1.5
-      acc_lim_y: 1.5
+      min_speed_theta: 0.1
+      acc_lim_x: 0.7 # 2.5
+      acc_lim_y: 0.7 # 2.5
       acc_lim_theta: 3.2
-      decel_lim_x: -1.0
-      decel_lim_y: -1.0
+      decel_lim_x: -0.7 # -2.5
+      decel_lim_y: -0.7 # -2.5
       decel_lim_theta: -3.2
-      vx_samples: 15
-      vy_samples: 15
-      vtheta_samples: 10
+      vx_samples: 15 # 20
+      vy_samples: 15 # 20
+      vtheta_samples: 10 # 20
       sim_time: 1.0
       linear_granularity: 0.025
       angular_granularity: 0.025
-      xy_goal_tolerance: 0.1
+      xy_goal_tolerance: 0.25
       path_length_tolerance: 1.0
       trans_stopped_velocity: 0.25
       short_circuit_trajectory_evaluation: True
       limit_vel_cmd_in_traj: False
       stateful: True
-      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
+      critics: ["BaseObstacle", "PathDist", "GoalDist", "RotateToGoal"]
+      #critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "PathDist", "GoalDist"] # "GoalAlign", "PathAlign"
       BaseObstacle.scale: 0.05
-      PathAlign.scale: 0.0
+      PathAlign.scale: 40.0
       GoalAlign.scale: 20.0
       PathAlign.forward_point_distance: 0.1
       GoalAlign.forward_point_distance: 0.1
-      Oscillation.scale: 3.0
+      Oscillation.scale: 1.0
       Oscillation.oscillation_reset_dist: 0.1
       Oscillation.oscillation_reset_angle: 0.3
-      PathDist.scale: 200.0
-      GoalDist.scale: 10.0
-      RotateToGoal.scale: 10.0
+      PathDist.scale: 25.0 # 40.0
+      GoalDist.scale: 25.0 # 24.0
+      RotateToGoal.scale: 20.0 # 32.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
 
@@ -113,19 +103,19 @@ local_costmap:
   local_costmap:
     ros__parameters:
       update_frequency: 5.0
-      publish_frequency: 5.0
+      publish_frequency: 2.0
       global_frame: odom
       robot_base_frame: base_footprint
       rolling_window: true
-      width: 3
-      height: 3
-      resolution: 0.01
+      width: 2 # 3
+      height: 2 # 3
+      resolution: 0.05
       robot_radius: 0.2
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 2.0
-        inflation_radius: 0.3
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.2
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -137,7 +127,7 @@ local_costmap:
         mark_threshold: 0
         observation_sources: scan
         scan:
-          topic: /scan
+          topic: /scan_corrected
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -154,20 +144,20 @@ local_costmap:
 global_costmap:
   global_costmap:
     ros__parameters:
-      update_frequency: 5.0
-      publish_frequency: 5.0
-      global_frame: map
+      update_frequency: 1.0
+      publish_frequency: 1.0
+      global_frame: odom
       robot_base_frame: base_footprint
       robot_radius: 0.2
-      resolution: 0.01
+      resolution: 0.05
       track_unknown_space: true
-      plugins: ["static_layer", "obstacle_layer", "virtual_layer", "inflation_layer"]
+      plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
         observation_sources: scan
         scan:
-          topic: /scan
+          topic: /scan_corrected
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -179,31 +169,10 @@ global_costmap:
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         map_subscribe_transient_local: True
-      virtual_layer:
-        plugin: "nav2_virtual_layer::VirtualLayer"
-        enabled: true
-        map_frame: map
-        default_cost_level: 254
-
-        # ===============================
-        # OPTION 1: Define shapes inline
-        # ===============================
-        # forms:
-        #   - "CIRCLE(1 1 0.1) [COST:254] [DURATION:seconds, COST:128]"
-        #   - "LINESTRING(1 1, 1 0.5) [COST:200] [THICKNESS:0.05]"
-
-        # ==================================
-        # OPTION 2: Load shapes from a file
-        # ==================================
-        # forms_file: "package://my_robot_nav/config/virtual_layer_forms.yaml"
-
-        # 👉 You can use OPTION 1 OR OPTION 2
-        # 👉 If forms_file is set, it OVERRIDES forms
-        # 👉 Only ONE source is used
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 2.0
-        inflation_radius: 0.3
+        cost_scaling_factor: 3.0
+        inflation_radius: 0.2
       always_send_full_costmap: True
 
 # The yaml_filename does not need to be specified since it going to be set by defaults in launch.
@@ -223,28 +192,27 @@ map_saver:
 
 planner_server:
   ros__parameters:
-    expected_planner_frequency: 10.0
-    planner_plugins: ["GridBased"]
+    expected_planner_frequency: 20.0
     GridBased:
-      plugin: "nav2_smac_planner::SmacPlanner2D"  # Meilleur que NavFn
-      tolerance: 0.25  # Réduit de 0.5
+      plugin: "nav2_smac_planner::SmacPlanner2D" #"nav2_smac_planner::SmacPlannerHybrid"  # Meilleur que NavFn ?
+      tolerance: 0.2  # Réduit de 0.5
       downsample_costmap: false
       downsampling_factor: 1
       allow_unknown: true
-      max_iterations: 100000
-      max_planning_time: 1.0
-      # motion_model_for_search: "REEDS_SHEPP"  # Ou "DUBIN" selon votre robot
+      max_iterations: 200000 # 1000000
+      max_planning_time: 1.5 # 3.5
+      # motion_model_for_search: "GRID" # "REEDS_SHEPP"  # Ou "DUBIN" selon votre robot
       angle_quantization_bins: 72
       analytic_expansion_ratio: 3.5
       analytic_expansion_max_length: 3.0
       minimum_turning_radius: 0.0  # Ajustez selon votre robot
-      reverse_penalty: 0.0
+      reverse_penalty: 2.0
       change_penalty: 0.0
-      non_straight_penalty: 0.0
+      non_straight_penalty: 1.2
       cost_penalty: 2.0
       retrospective_penalty: 0.015
       lookup_table_size: 20.0
-      cache_obstacle_heuristic: true # false : Permet de prendre en compte la dynamique des obstacles. (impact énorme sur les perf)
+      cache_obstacle_heuristic: false
       smooth_path: true  # Important !
 
 smoother_server:
@@ -275,7 +243,7 @@ behavior_server:
     assisted_teleop:
       plugin: "nav2_behaviors::AssistedTeleop"
     local_frame: odom
-    global_frame: map
+    global_frame: odom
     robot_base_frame: base_footprint
     transform_tolerance: 0.1
     simulate_ahead_time: 2.0
@@ -349,7 +317,7 @@ collision_monitor:
       type: "polygon"
       action_type: "approach"
       footprint_topic: "/local_costmap/published_footprint"
-      time_before_collision: .6
+      time_before_collision: .4 # .6
       simulation_time_step: 0.1
       min_points: 6
       visualize: False
@@ -357,7 +325,7 @@ collision_monitor:
     observation_sources: ["scan"]
     scan:
       type: "scan"
-      topic: "scan"
+      topic: "scan_corrected"
       min_height: 0.15
       max_height: 2.0
       enabled: True

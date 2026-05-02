@@ -1,0 +1,170 @@
+import os
+
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+
+from launch_ros.actions import Node, SetParameter
+from launch_ros.substitutions import FindPackageShare
+
+from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
+from launch_ros.parameter_descriptions import ParameterValue
+
+packageName = "pcb_bringup"
+rvizConfigRelativePath       = "config/rviz/config.rviz"
+controllerParamsRelativePath = "config/sim/controller_params.yaml"
+robotControllerRelativePath  = "config/sim/robot_controller.yaml"
+nav2ParamsRelativePath       = "config/sim/nav2_params.yaml"
+mapFileRelativePath          = "config/map/map_cdfr_simple.yaml"
+
+def generate_launch_description():
+    pkg_pcb_bringup = FindPackageShare(packageName)
+    
+    # 1. DÉCLARATION DE L'ARGUMENT DYNAMIQUE
+    # C'est sim.launch ou real.launch qui décidera de sa valeur
+    use_sim_time = LaunchConfiguration('use_sim_time')
+    declare_use_sim_time = DeclareLaunchArgument(
+        'use_sim_time',
+        default_value='false',
+        description='Use simulation (Gazebo) clock if true'
+    )
+
+    pkgPath              = pkg_pcb_bringup.find(packageName)
+    rvizConfigPath       = os.path.join(pkgPath, rvizConfigRelativePath)
+    controllerParamsPath = os.path.join(pkgPath, controllerParamsRelativePath)
+    robotControllerPath  = os.path.join(pkgPath, robotControllerRelativePath)
+    nav2ParamsPath       = os.path.join(pkgPath, nav2ParamsRelativePath)
+    mapFilePath          = os.path.join(pkgPath, mapFileRelativePath)    
+
+    lifecycle_nodes = [
+        'jenga_manager',
+    ]
+
+    # Paramètres du jenga_manager
+    jengaParamsPath = PathJoinSubstitution([
+        FindPackageShare("jenga_manager"),
+        "config",
+        "params.yaml"
+    ])
+    
+    # 2. XACRO DYNAMIQUE
+    # On passe la variable use_sim_time à l'argument use_sim du xacro
+    robot_description = ParameterValue(
+        Command([
+            'xacro ',
+            PathJoinSubstitution([pkg_pcb_bringup, "urdf", "robot.xacro"]),
+            ' use_sim:=', use_sim_time
+        ]),
+        value_type=str
+    )
+
+    return LaunchDescription([
+        # On ajoute la déclaration au LaunchDescription
+        declare_use_sim_time,
+
+        # Configure automatiquement tous les noeuds de ce launch file pour utiliser use_sim_time
+        SetParameter(name='use_sim_time', value=use_sim_time),
+
+        # robot_state_publisher
+        TimerAction(
+            period=2.0,
+            actions=[
+                Node(
+                    package="robot_state_publisher",
+                    executable="robot_state_publisher",
+                    output="both",
+                    parameters=[{
+                        "robot_description": robot_description,
+                        "use_sim_time": use_sim_time
+                    }]
+                ),
+            ]
+        ),
+
+        Node( 
+            package='tf2_ros', 
+            executable='static_transform_publisher', 
+            arguments=['--x', '0.3', '--y', '0.3', '--z', '0',
+                       '--roll', '0', '--pitch', '0', '--yaw', '0',
+                       '--frame-id', 'map', '--child-frame-id', 'odom'], 
+            parameters=[{'use_sim_time': use_sim_time}], 
+        ),
+
+        # RViz
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            parameters=[{'use_sim_time': use_sim_time}],
+            arguments=["-d", rvizConfigPath],
+            output='screen'
+        ),
+
+        # Controllers
+        TimerAction(
+            period=3.0,
+            actions=[
+                Node(
+                    package="controller_manager",
+                    executable="spawner",
+                    arguments=["joint_state_broadcaster"],
+                    parameters=[{'use_sim_time': use_sim_time}],
+                ),
+                Node(
+                    package="controller_manager",
+                    executable="spawner",
+                    arguments=["omni_wheel_drive_controller", "--param-file", robotControllerPath],
+                    parameters=[{'use_sim_time': use_sim_time}],
+                ),
+            ],
+        ),
+
+        Node(
+            package="car",
+            executable="car_controller",
+            parameters = [controllerParamsPath, {'use_sim_time': use_sim_time}]
+        ),
+
+        Node(
+            package="car",
+            executable="gt_node",
+            parameters=[{'use_sim_time': use_sim_time}]
+        ),
+
+        # NAV2 & JENGA
+        TimerAction(
+            period=7.0,
+            actions=[
+                Node(
+                    package='jenga_manager',
+                    executable='jenga_manager_node',
+                    name='jenga_manager',
+                    output='screen',
+                    parameters=[{'use_sim_time': use_sim_time}, jengaParamsPath]
+                ),
+                Node(
+                    package='nav2_lifecycle_manager',
+                    executable='lifecycle_manager',
+                    name='lifecycle_manager_application',
+                    output='screen',
+                    parameters=[
+                        {'use_sim_time': use_sim_time},
+                        {'autostart': True},
+                        {'node_names': lifecycle_nodes},
+                        {'bond_timeout': 0.0} # Pas de bonds pour ce petit manager
+                    ]
+                ),
+                IncludeLaunchDescription(
+                    PythonLaunchDescriptionSource(
+                        PathJoinSubstitution([pkg_pcb_bringup, "launch", "bringup_launch.py"])
+                    ),
+                    launch_arguments={
+                        "slam": "False",
+                        "map": mapFilePath,
+                        "use_sim_time": use_sim_time,
+                        "params_file": nav2ParamsPath,
+                        "autostart": "true"
+                    }.items(),
+                ),
+            ]
+        ),
+    ])

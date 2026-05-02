@@ -13,6 +13,13 @@ from launch_ros.substitutions import FindPackageShare
 from launch.substitutions import Command, PathJoinSubstitution
 from launch_ros.parameter_descriptions import ParameterValue
 
+from launch_ros.actions import LifecycleNode
+from launch.actions import EmitEvent, RegisterEventHandler
+from launch_ros.events.lifecycle import ChangeState
+from launch_ros.event_handlers import OnStateTransition
+from launch.events import matches_action
+import lifecycle_msgs.msg
+
 import launch_ros
 
 from launch.actions import TimerAction
@@ -34,10 +41,16 @@ def generate_launch_description():
     rvizConfigPath       = os.path.join(pkgPath, rvizConfigRelativePath)
     controllerParamsPath = os.path.join(pkgPath, controllerParamsRelativePath)
     robotControllerPath  = os.path.join(pkgPath, robotControllerRelativePath)
-    ekfConfigPath        = os.path.join(pkgPath, ekfConfigRelativePath)
+    #ekfConfigPath        = os.path.join(pkgPath, ekfConfigRelativePath)
     nav2ParamsPath       = os.path.join(pkgPath, nav2ParamsRelativePath)
     mapFilePath          = os.path.join(pkgPath, mapFileRelativePath)    
 
+    # Paramètres du jenga_manager
+    jengaParamsPath = PathJoinSubstitution([
+        FindPackageShare("jenga_manager"),
+        "config",
+        "params.yaml"
+    ])  
     
     robot_description = ParameterValue(
         Command([
@@ -214,6 +227,13 @@ def generate_launch_description():
         TimerAction(
             period=7.0,
             actions=[
+                Node(
+                    package='jenga_manager',
+                    executable='jenga_manager_node',
+                    name='jenga_manager',
+                    output='screen',
+                    parameters=[{'use_sim_time': True}, jengaParamsPath]
+                ),
                 IncludeLaunchDescription(
                     PythonLaunchDescriptionSource(
                         PathJoinSubstitution([
@@ -233,5 +253,7 @@ def generate_launch_description():
                 ),
             ]
         ),
+
+
 
     ])

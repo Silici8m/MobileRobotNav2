@@ -4,3 +4,7 @@
 # Example:
 ############
 repositories:
+  nav2_virtual_layer:
+    type: git
+    url: https://github.com/SherifFathey/nav2-virtual-layer.git
+    version: main

@@ -1,0 +1,6 @@
+car_controller:
+  ros__parameters:
+    sim: true
+    controlable: false
+    joy_speed: 1.0
+    nav2_speed: 1.0

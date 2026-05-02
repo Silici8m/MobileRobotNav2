@@ -34,10 +34,8 @@ from nav2_common.launch import ReplaceString, RewrittenYaml
 
 def generate_launch_description():
     # Get the launch directory
-    bringup_dir = get_package_share_directory('nav2_bringup')
-    launch_dir = os.path.join(bringup_dir, 'launch')
-    own_car_dir = get_package_share_directory('car')
-    own_car_launch_dir = os.path.join(own_car_dir, 'launch')
+    pcb_bringup_dir = get_package_share_directory('pcb_bringup')
+    pcb_launch_dir = os.path.join(pcb_bringup_dir, 'launch')
 
     # Create the launch configuration variables
     namespace = LaunchConfiguration('namespace')
@@ -51,7 +49,7 @@ def generate_launch_description():
     use_respawn = LaunchConfiguration('use_respawn')
     log_level = LaunchConfiguration('log_level')
     use_localization = LaunchConfiguration('use_localization')
-    
+
     # Map fully qualified names to relative ones so the node's namespace can be prepended.
     # In case of the transforms (tf), currently, there doesn't seem to be a better alternative
     # https://github.com/ros/geometry2/issues/32
@@ -115,7 +113,7 @@ def generate_launch_description():
 
     declare_params_file_cmd = DeclareLaunchArgument(
         'params_file',
-        default_value=os.path.join(bringup_dir, 'params', 'nav2_params.yaml'),
+        default_value=os.path.join(pcb_bringup_dir, 'params', 'nav2_params.yaml'),
         description='Full path to the ROS2 parameters file to use for all launched nodes',
     )
 
@@ -157,7 +155,7 @@ def generate_launch_description():
             ),
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
-                    os.path.join(launch_dir, 'slam_launch.py')
+                    os.path.join(pcb_launch_dir, 'slam_launch.py')
                 ),
                 condition=IfCondition(PythonExpression([slam, ' and ', use_localization])),
                 launch_arguments={
@@ -170,7 +168,7 @@ def generate_launch_description():
             ),
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
-                    os.path.join(own_car_launch_dir, 'localization_launch.py')
+                    os.path.join(pcb_launch_dir, 'localization_launch.py')
                 ),
                 condition=IfCondition(PythonExpression(['not ', slam, ' and ', use_localization])),
                 launch_arguments={
@@ -186,7 +184,7 @@ def generate_launch_description():
             ),
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
-                    os.path.join(launch_dir, 'navigation_launch.py')
+                    os.path.join(pcb_launch_dir, 'navigation_launch.py')
                 ),
                 launch_arguments={
                     'namespace': namespace,

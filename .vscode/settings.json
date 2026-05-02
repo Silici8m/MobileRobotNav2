@@ -45,6 +45,8 @@
         "DISTRO",
         "getent",
         "ints",
+        "Jenga",
+        "jengas",
         "NOPASSWD",
         "noqa",
         "pytest",
