@@ -1,6 +1,6 @@
 controller_manager:
   ros__parameters:
-    update_rate: 50
+    update_rate: 30
     use_sim_time: false
 
     joint_state_broadcaster:
@@ -20,8 +20,8 @@ omni_wheel_drive_controller:
         "rb_joint",
       ]
 
-    robot_radius: 1.1
-    wheel_radius: 0.25
+    robot_radius: 0.1626   # Distance centre-roue en mètres
+    wheel_radius: 0.05     # Rayon exact de tes roues
 
     odom_frame_id: odom
     base_frame_id: base_footprint

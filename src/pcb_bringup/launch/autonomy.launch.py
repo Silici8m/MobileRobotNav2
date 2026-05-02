@@ -19,10 +19,20 @@ mapFileRelativePath          = "config/map/map_cdfr_simple.yaml"
 
 def generate_launch_description():
     pkg_pcb_bringup = FindPackageShare(packageName)
+
+    # Position initiale
     
     # 1. DÉCLARATION DE L'ARGUMENT DYNAMIQUE
-    # C'est sim.launch ou real.launch qui décidera de sa valeur
+
+    pos_x = LaunchConfiguration('x')
+    pos_y = LaunchConfiguration('y')
+    pos_yaw = LaunchConfiguration('yaw')
+    # C'est sim.launch ou real.launch qui décude la valeur de use_sim_time
     use_sim_time = LaunchConfiguration('use_sim_time')
+
+    declare_x = DeclareLaunchArgument('x', default_value='0.25', description='Initial X')
+    declare_y = DeclareLaunchArgument('y', default_value='1.75', description='Initial Y')
+    declare_yaw = DeclareLaunchArgument('yaw', default_value='0.0', description='Initial Yaw')
     declare_use_sim_time = DeclareLaunchArgument(
         'use_sim_time',
         default_value='false',
@@ -61,6 +71,9 @@ def generate_launch_description():
     return LaunchDescription([
         # On ajoute la déclaration au LaunchDescription
         declare_use_sim_time,
+        declare_x,
+        declare_y,
+        declare_yaw,
 
         # Configure automatiquement tous les noeuds de ce launch file pour utiliser use_sim_time
         SetParameter(name='use_sim_time', value=use_sim_time),
@@ -84,9 +97,9 @@ def generate_launch_description():
         Node( 
             package='tf2_ros', 
             executable='static_transform_publisher', 
-            arguments=['--x', '0.3', '--y', '0.3', '--z', '0',
-                       '--roll', '0', '--pitch', '0', '--yaw', '0',
-                       '--frame-id', 'map', '--child-frame-id', 'odom'], 
+            arguments=['--x', pos_x, '--y', pos_y, '--z', '0',
+                       '--roll', '0', '--pitch', '0', '--yaw', pos_yaw,
+                       '--frame-id', 'map', '--child-frame-id', 'odom'],
             parameters=[{'use_sim_time': use_sim_time}], 
         ),
 

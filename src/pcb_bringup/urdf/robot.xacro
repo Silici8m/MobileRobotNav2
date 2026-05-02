@@ -164,6 +164,13 @@
                         <xacro:if value="$(arg use_sim)">
                                 <plugin>gz_ros2_control/GazeboSimSystem</plugin>
                         </xacro:if>
+
+                        <xacro:unless value="$(arg use_sim)">
+                                <plugin>micro_ros_hardware/MicroRosHardwareInterface</plugin>
+                                <!-- Les paramètres optionnels lus par ton on_init() -->
+                                <param name="cmd_topic">/wheel_commands</param>
+                                <param name="state_topic">/micro_controller/joint_states</param>
+                        </xacro:unless>
                 </hardware>
 
                 <joint name="lf_joint">
