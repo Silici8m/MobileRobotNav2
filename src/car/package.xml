@@ -26,8 +26,8 @@
   <depend>geometry_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>nav_msgs</depend>
-  <depend>gz-transport13</depend>
-  <depend>gz-msgs10</depend>
+  <exec_depend>gz-transport13</exec_depend>
+  <exec_depend>gz-msgs10</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

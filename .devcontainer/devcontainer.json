@@ -38,7 +38,8 @@
 		"--volume=/dev/input:/dev/input",
 		"--device=/dev/bus/usb",
 		"--device=/dev/input/js0",
-		"--device=/dev/ttyUSB0:/dev/ttyUSB0"
+		"--device=/dev/ttyUSB0:/dev/ttyUSB0",
+		"--device=/dev/ttyACM0:/dev/ttyACM0"
 	],
 	"containerEnv": {
 		"DISPLAY": "${localEnv:DISPLAY}", // Needed for GUI try ":0" for windows
