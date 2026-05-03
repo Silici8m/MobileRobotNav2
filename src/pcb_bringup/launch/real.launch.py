@@ -73,6 +73,7 @@ def generate_launch_description():
         ]),
         launch_arguments={
             'use_sim_time': 'false',
+            'use_sim': 'false',
             'x': pos_x,
             'y': pos_y,
             'yaw': pos_yaw

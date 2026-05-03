@@ -7,18 +7,11 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node, SetParameter
 from launch_ros.substitutions import FindPackageShare
 
-from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution, PythonExpression
 from launch_ros.parameter_descriptions import ParameterValue
 
-packageName = "pcb_bringup"
-rvizConfigRelativePath       = "config/rviz/config.rviz"
-controllerParamsRelativePath = "config/sim/controller_params.yaml"
-robotControllerRelativePath  = "config/sim/robot_controller.yaml"
-nav2ParamsRelativePath       = "config/sim/nav2_params.yaml"
-mapFileRelativePath          = "config/map/map_cdfr_simple.yaml"
-
 def generate_launch_description():
-    pkg_pcb_bringup = FindPackageShare(packageName)
+    pkg_pcb_bringup = FindPackageShare("pcb_bringup")
 
     # Position initiale
     
@@ -28,6 +21,7 @@ def generate_launch_description():
     pos_y = LaunchConfiguration('y')
     pos_yaw = LaunchConfiguration('yaw')
     # C'est sim.launch ou real.launch qui décude la valeur de use_sim_time
+    use_sim = LaunchConfiguration('use_sim')
     use_sim_time = LaunchConfiguration('use_sim_time')
 
     declare_x = DeclareLaunchArgument('x', default_value='0.25', description='Initial X')
@@ -38,13 +32,21 @@ def generate_launch_description():
         default_value='false',
         description='Use simulation (Gazebo) clock if true'
     )
+    declare_use_sim = DeclareLaunchArgument('use_sim', default_value='false', description='Force Gazebo plugins if true')
 
-    pkgPath              = pkg_pcb_bringup.find(packageName)
-    rvizConfigPath       = os.path.join(pkgPath, rvizConfigRelativePath)
-    controllerParamsPath = os.path.join(pkgPath, controllerParamsRelativePath)
-    robotControllerPath  = os.path.join(pkgPath, robotControllerRelativePath)
-    nav2ParamsPath       = os.path.join(pkgPath, nav2ParamsRelativePath)
-    mapFilePath          = os.path.join(pkgPath, mapFileRelativePath)    
+    # RViz est maintenant dans pcb_description
+    rvizConfigPath = PathJoinSubstitution([FindPackageShare("pcb_description"), "config", "rviz", "config.rviz"])
+    
+    # La carte reste statique dans pcb_bringup
+    mapFilePath = PathJoinSubstitution([pkg_pcb_bringup, "config", "map", "map_cdfr_simple.yaml"])
+
+    # LA MAGIE ROS 2 : Sélectionne le dossier "sim" ou "real" selon l'argument use_sim
+    config_folder = PythonExpression(['"sim" if "', use_sim, '" == "true" else "real"'])
+
+    # Construction dynamique des chemins
+    controllerParamsPath = PathJoinSubstitution([pkg_pcb_bringup, "config", config_folder, "controller_params.yaml"])
+    robotControllerPath  = PathJoinSubstitution([pkg_pcb_bringup, "config", config_folder, "robot_controller.yaml"])
+    nav2ParamsPath       = PathJoinSubstitution([pkg_pcb_bringup, "config", config_folder, "nav2_params.yaml"])
 
     lifecycle_nodes = [
         'jenga_manager',
@@ -62,8 +64,8 @@ def generate_launch_description():
     robot_description = ParameterValue(
         Command([
             'xacro ',
-            PathJoinSubstitution([pkg_pcb_bringup, "urdf", "robot.xacro"]),
-            ' use_sim:=', use_sim_time
+            PathJoinSubstitution([FindPackageShare("pcb_description"), "urdf", "robot.xacro"]),
+            ' use_sim:=', use_sim
         ]),
         value_type=str
     )
@@ -71,6 +73,7 @@ def generate_launch_description():
     return LaunchDescription([
         # On ajoute la déclaration au LaunchDescription
         declare_use_sim_time,
+        declare_use_sim,
         declare_x,
         declare_y,
         declare_yaw,

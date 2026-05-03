@@ -9,33 +9,39 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
-
   <!-- Dépendances pour le lancement -->
+  <exec_depend>pcb_description</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
   
+  <!-- Dépendances Nav2 -->
+  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>nav2_common</exec_depend>
+  
   <!-- Dépendances vers tes autres packages -->
+  <exec_depend>car</exec_depend>
+  <exec_depend>micro_ros_hardware</exec_depend>
+  <exec_depend>jenga_manager</exec_depend>
+  <exec_depend>micro_ros_hardware</exec_depend>
+  <!-- 
   <exec_depend>xacro</exec_depend>
   <exec_depend>rviz2</exec_depend>
-  <exec_depend>car</exec_depend>
-  <exec_depend>jenga_manager</exec_depend>
 
   <exec_depend>ros_gz_bridge</exec_depend>
   <exec_depend>ros_gz_sim</exec_depend>
   <exec_depend>gz_ros2_control</exec_depend>
   
-  <!-- Dépendances Nav2 -->
-  <exec_depend>nav2_bringup</exec_depend>
-  <exec_depend>nav2_common</exec_depend>
 
   <depend>geometry_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>nav_msgs</depend>
   <exec_depend>gz-transport13</exec_depend>
   <exec_depend>gz-msgs10</exec_depend>
+  -->
 
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  
   <export>
     <build_type>ament_cmake</build_type>
   </export>

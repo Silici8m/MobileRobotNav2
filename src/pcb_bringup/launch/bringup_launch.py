@@ -34,6 +34,8 @@ from nav2_common.launch import ReplaceString, RewrittenYaml
 
 def generate_launch_description():
     # Get the launch directory
+    bringup_dir = get_package_share_directory('nav2_bringup')
+    launch_dir = os.path.join(bringup_dir, 'launch')
     pcb_bringup_dir = get_package_share_directory('pcb_bringup')
     pcb_launch_dir = os.path.join(pcb_bringup_dir, 'launch')
 
@@ -113,7 +115,7 @@ def generate_launch_description():
 
     declare_params_file_cmd = DeclareLaunchArgument(
         'params_file',
-        default_value=os.path.join(pcb_bringup_dir, 'params', 'nav2_params.yaml'),
+        default_value=os.path.join(bringup_dir, 'params', 'nav2_params.yaml'),
         description='Full path to the ROS2 parameters file to use for all launched nodes',
     )
 
@@ -155,7 +157,7 @@ def generate_launch_description():
             ),
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
-                    os.path.join(pcb_launch_dir, 'slam_launch.py')
+                    os.path.join(launch_dir, 'slam_launch.py')
                 ),
                 condition=IfCondition(PythonExpression([slam, ' and ', use_localization])),
                 launch_arguments={

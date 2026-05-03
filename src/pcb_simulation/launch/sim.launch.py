@@ -10,7 +10,10 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 def generate_launch_description():
     # Définition des packages
     pkg_pcb_bringup = FindPackageShare("pcb_bringup")
-    pkgPath = pkg_pcb_bringup.find("pcb_bringup")
+    pkg_pcb_simulation = FindPackageShare("pcb_simulation")
+    
+    # Chemin absolu pour la variable d'environnement Gazebo
+    pkg_sim_path = pkg_pcb_simulation.find("pcb_simulation")
 
     pos_x = LaunchConfiguration('x')
     pos_y = LaunchConfiguration('y')
@@ -20,7 +23,8 @@ def generate_launch_description():
     declare_y = DeclareLaunchArgument('y', default_value='1.75')
     declare_yaw = DeclareLaunchArgument('yaw', default_value='0.0')
 
-    world_path = PathJoinSubstitution([pkg_pcb_bringup, "worlds", "arena.sdf"])
+    # Changement ici : le monde est dans pcb_simulation
+    world_path = PathJoinSubstitution([pkg_pcb_simulation, "worlds", "arena.sdf"])
 
     # 1. L'ENVIRONNEMENT : GAZEBO
     gazebo = IncludeLaunchDescription(
@@ -33,13 +37,14 @@ def generate_launch_description():
     )
 
     # 2. LE CERVEAU : Lancement de l'Autonomie
-    # On force 'use_sim_time' à 'true' car on est dans le simulateur
+    # L'autonomie reste dans pcb_bringup
     autonomy = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([pkg_pcb_bringup, "launch", "autonomy.launch.py"])
         ]),
         launch_arguments={
             'use_sim_time': 'true',
+            'use_sim': 'true',
             'x': pos_x,
             'y': pos_y,
             'yaw': pos_yaw
@@ -51,16 +56,15 @@ def generate_launch_description():
         declare_y,
         declare_yaw,
 
-        # Variables d'environnement pour Gazebo
+        # Changement ici : la variable pointe vers pcb_simulation
         SetEnvironmentVariable(
             name='GZ_SIM_RESOURCE_PATH',
-            value=pkgPath
+            value=pkg_sim_path
         ),
 
         gazebo,
 
         # 3. LES PONTS (BRIDGES) : Connecter Gazebo à ROS 2
-        # Horloge
         Node(
             package='ros_gz_bridge',
             executable='parameter_bridge',
@@ -68,14 +72,12 @@ def generate_launch_description():
             parameters=[{'use_sim_time': True}],
             output='screen'
         ),
-        # Lidar
         Node(
             package='ros_gz_bridge',
             executable='parameter_bridge',
             parameters=[{'use_sim_time': True}],
             arguments=['/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan']
         ),
-        # IMU
         Node(
             package='ros_gz_bridge',
             executable='parameter_bridge',
@@ -84,7 +86,6 @@ def generate_launch_description():
         ),
 
         # 4. APPARITION DU ROBOT (SPAWN)
-        # Gazebo écoute le topic /robot_description publié par autonomy.launch.py
         Node(
             package='ros_gz_sim',
             executable='create',
@@ -100,6 +101,5 @@ def generate_launch_description():
             output='screen'
         ),
 
-        # Démarrage de la logique robotique
         autonomy
     ])
