@@ -11,23 +11,8 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
-#find_package(gz-transport13 REQUIRED)
-#find_package(gz-msgs10 REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
-
-add_executable(gt_node src/gt_node.cpp)
-ament_target_dependencies(gt_node rclcpp nav_msgs sensor_msgs)
-
-target_link_libraries(gt_node
-  gz-transport13::core
-)
-
-add_executable(car_controller src/car_controller.cpp)
-ament_target_dependencies(car_controller rclcpp geometry_msgs sensor_msgs)
-
-install(TARGETS car_controller gt_node
-  DESTINATION lib/${PROJECT_NAME})
 
 install(
   DIRECTORY config
