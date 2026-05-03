@@ -3,7 +3,7 @@
 
     <gazebo>
         <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-            <parameters>$(find car)/config/sim/robot_controller.yaml</parameters>
+            <parameters>$(find pcb_bringup)/config/sim/robot_controller.yaml</parameters>
         </plugin>
     </gazebo>
 
@@ -63,17 +63,19 @@
             <update_rate>10</update_rate>
             <visualize>true</visualize>
             <topic>imu</topic>
-            <noise>
-                <type>gaussian</type>
-                <rate>
-                    <mean>0.0</mean>
-                    <stddev>0.01</stddev>
-                </rate>
-                <bias>
-                    <mean>0.0001</mean>
-                    <stddev>0.0001</stddev>
-                </bias>
-            </noise>
+                <noise>
+                    <type>gaussian</type>
+                    <angular_velocity>
+                        <x><noise type="gaussian"><mean>0.0</mean><stddev>0.001</stddev></noise></x>
+                        <y><noise type="gaussian"><mean>0.0</mean><stddev>0.001</stddev></noise></y>
+                        <z><noise type="gaussian"><mean>0.0</mean><stddev>0.001</stddev></noise></z>
+                    </angular_velocity>
+                    <linear_acceleration>
+                        <x><noise type="gaussian"><mean>0.0</mean><stddev>0.01</stddev></noise></x>
+                        <y><noise type="gaussian"><mean>0.0</mean><stddev>0.01</stddev></noise></y>
+                        <z><noise type="gaussian"><mean>0.0</mean><stddev>0.01</stddev></noise></z>
+                    </linear_acceleration>
+                </noise>
         </sensor>
     </gazebo>
 

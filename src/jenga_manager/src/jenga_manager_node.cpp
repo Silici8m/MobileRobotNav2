@@ -34,14 +34,23 @@ public:
     CallbackReturn on_configure(const rclcpp_lifecycle::State &) override {
         RCLCPP_INFO(get_logger(), "Configuring Jenga Manager...");
         
-        client_add_ = this->create_client<nav2_virtual_layer::srv::AddPolygon>(
+        client_add_global_ = this->create_client<nav2_virtual_layer::srv::AddPolygon>(
             "/global_costmap/virtual_layer/add_polygon");
 
-        client_remove_ = this->create_client<nav2_virtual_layer::srv::RemoveShape>(
+        client_remove_global_ = this->create_client<nav2_virtual_layer::srv::RemoveShape>(
         "/global_costmap/virtual_layer/remove_shape");
 
-        client_clear_all_ = this->create_client<std_srvs::srv::Trigger>(
+        client_clear_all_global_ = this->create_client<std_srvs::srv::Trigger>(
         "/global_costmap/virtual_layer/clear_all");
+
+        client_add_local_ = this->create_client<nav2_virtual_layer::srv::AddPolygon>(
+        "/local_costmap/virtual_layer/add_polygon");
+
+        client_remove_local_ = this->create_client<nav2_virtual_layer::srv::RemoveShape>(
+        "/local_costmap/virtual_layer/remove_shape");
+
+        client_clear_all_local_ = this->create_client<std_srvs::srv::Trigger>(
+        "/local_costmap/virtual_layer/clear_all");
     
         world_->setOnAddJenga([this](std::shared_ptr<Jenga> j) {
             this->add_jenga_to_virtual_layer(j);
@@ -65,9 +74,12 @@ public:
 
         auto wait = std::chrono::seconds(5);
 
-        if (!client_add_->wait_for_service(wait) ||
-            !client_remove_->wait_for_service(wait) ||
-            !client_clear_all_->wait_for_service(wait))
+        if (!client_add_global_->wait_for_service(wait) ||
+            !client_remove_global_->wait_for_service(wait) ||
+            !client_clear_all_global_->wait_for_service(wait) ||
+            !client_add_local_->wait_for_service(wait) ||
+            !client_remove_local_->wait_for_service(wait) ||
+            !client_clear_all_local_->wait_for_service(wait))
         {
             RCLCPP_ERROR(get_logger(), "virtual_layer/add_polygon, virtual_layer/remove_shape or virtual_layer/clear_all services not available!");
             return CallbackReturn::FAILURE;
@@ -75,9 +87,12 @@ public:
 
         std::thread([this]() {
             auto request = std::make_shared<std_srvs::srv::Trigger::Request>();
-            auto future = client_clear_all_->async_send_request(request);
             
-            future.wait_for(std::chrono::seconds(5));
+            // Envoi asynchrone de la demande de nettoyage
+            client_clear_all_global_->async_send_request(request);
+            client_clear_all_local_->async_send_request(request);
+            
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             
             RCLCPP_INFO(this->get_logger(), "Nettoyage terminé. Ajout des Jengas...");
             this->load_groups_from_params();
@@ -92,19 +107,27 @@ public:
         RCLCPP_INFO(get_logger(), "Deactivating...");
         this->world_->clearAllJengas();
         auto wait = std::chrono::seconds(5);
-        client_add_.get()->wait_for_service(wait);
-        client_remove_.get()->wait_for_service(wait);
-        client_clear_all_.get()->wait_for_service(wait);
+        client_add_global_.get()->wait_for_service(wait);
+        client_remove_global_.get()->wait_for_service(wait);
+        client_clear_all_global_.get()->wait_for_service(wait);
+        client_add_local_.get()->wait_for_service(wait);
+        client_remove_local_.get()->wait_for_service(wait);
+        client_clear_all_local_.get()->wait_for_service(wait);
         return CallbackReturn::SUCCESS;
     }
 
 private:
 
-    rclcpp::Client<nav2_virtual_layer::srv::AddPolygon>::SharedPtr client_add_;
-    rclcpp::Client<nav2_virtual_layer::srv::RemoveShape>::SharedPtr client_remove_;
-    rclcpp::Client<std_srvs::srv::Trigger>::SharedPtr client_clear_all_;
+    rclcpp::Client<nav2_virtual_layer::srv::AddPolygon>::SharedPtr client_add_global_;
+    rclcpp::Client<nav2_virtual_layer::srv::RemoveShape>::SharedPtr client_remove_global_;
+    rclcpp::Client<std_srvs::srv::Trigger>::SharedPtr client_clear_all_global_;
+    rclcpp::Client<nav2_virtual_layer::srv::AddPolygon>::SharedPtr client_add_local_;
+    rclcpp::Client<nav2_virtual_layer::srv::RemoveShape>::SharedPtr client_remove_local_;
+    rclcpp::Client<std_srvs::srv::Trigger>::SharedPtr client_clear_all_local_;
+
     std::unique_ptr<WorldState> world_; // Instance de ton gestionnaire d'état
-    double Lj=0.15, lj=0.05;
+    
+    double Lj=0.15, lj=0.05; // Valeurs par défaut
 
     void load_groups_from_params() {
         auto parameters_and_prefixes = this->list_parameters({"groups"}, 10);
@@ -124,6 +147,7 @@ private:
                 new_group->createJengas(this->lj);
 
                 world_->addGroup(new_group);
+                std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
             } catch (const std::exception & e) {
                 RCLCPP_ERROR(get_logger(), "Error loading %s: %s", full_prefix.c_str(), e.what());
@@ -132,7 +156,7 @@ private:
     }
 
     void add_jenga_to_virtual_layer(std::shared_ptr<Jenga> jenga) {
-        if (!client_add_->service_is_ready()) {
+        if (!client_add_global_->service_is_ready() || !client_add_local_->service_is_ready()) {
             RCLCPP_ERROR(get_logger(), "Service AddPolygon not ready.");
             return;
         }
@@ -147,31 +171,34 @@ private:
         request->frame_id = "map";
         request->cost_level = 254;
 
-        auto future = client_add_->async_send_request(request);
-        
-        // METHODE SEQUENTIELLE (Attente garantie de la réponse)
-        auto status = future.wait_for(std::chrono::seconds(1));
-
-        if (status == std::future_status::ready) {
-            auto response = future.get();
-            if (response && response->success) {
-                jenga->uuid = response->uuid;
-                RCLCPP_INFO(get_logger(), "Jenga %s added.", jenga->id.c_str());
+        auto cb_global = [this, jenga](rclcpp::Client<nav2_virtual_layer::srv::AddPolygon>::SharedFuture future) {
+            if (auto response = future.get(); response && response->success) {
+                jenga->uuid_global = response->uuid;
+                RCLCPP_INFO(get_logger(), "Jenga %s (Global) added.", jenga->id.c_str());
             } else {
-                RCLCPP_ERROR(get_logger(), "Failed to add Jenga %s.", jenga->id.c_str());
+                RCLCPP_ERROR(get_logger(), "Failed to add Jenga %s on global_costmap.", jenga->id.c_str());
             }
-        } else {
-            RCLCPP_ERROR(get_logger(), "Timeout adding Jenga %s.", jenga->id.c_str());
-        }
+        };
+
+        auto cb_local = [this, jenga](rclcpp::Client<nav2_virtual_layer::srv::AddPolygon>::SharedFuture future) {
+            if (auto response = future.get(); response && response->success) {
+                jenga->uuid_local = response->uuid;
+                RCLCPP_INFO(get_logger(), "Jenga %s (Local) added.", jenga->id.c_str());
+            } else {
+                RCLCPP_ERROR(get_logger(), "Failed to add Jenga %s on local_costmap.", jenga->id.c_str());
+            }
+        };
+        client_add_global_->async_send_request(request, cb_global);
+        client_add_local_->async_send_request(request, cb_local);
     }
 
     void remove_jenga_from_virtual_layer(std::string uuid) {
-        if (uuid.empty() || !client_remove_->service_is_ready()) return;
+        if (uuid.empty() || !client_remove_global_->service_is_ready()) return;
 
         auto request = std::make_shared<nav2_virtual_layer::srv::RemoveShape::Request>();
         request->identifier = uuid;
 
-        auto future = client_remove_->async_send_request(request);
+        auto future = client_remove_global_->async_send_request(request);
         auto status = future.wait_for(std::chrono::seconds(1));
 
         if (status == std::future_status::ready) {
@@ -187,13 +214,14 @@ private:
     }
 
     void clear_all_jengas_from_virtual_layer() {
-        if (!client_clear_all_->service_is_ready()) return;
+        if (!client_clear_all_global_->service_is_ready() || !client_clear_all_local_->service_is_ready()) return;
 
         auto request = std::make_shared<std_srvs::srv::Trigger::Request>();
         
         // FIRE AND FORGET : Pour éviter les timeout liés à l'occupation du mutex côté serveur
         // (Surtout critique lors de la transition on_deactivate)
-        client_clear_all_->async_send_request(request);
+        client_clear_all_global_->async_send_request(request);
+        client_clear_all_local_->async_send_request(request);
         
         RCLCPP_INFO(get_logger(), "Clear all request sent to Nav2.");
     }

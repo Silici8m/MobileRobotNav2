@@ -5,7 +5,7 @@ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetE
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, PythonExpression
 
 def generate_launch_description():
     # Définition des packages
@@ -18,10 +18,21 @@ def generate_launch_description():
     pos_x = LaunchConfiguration('x')
     pos_y = LaunchConfiguration('y')
     pos_yaw = LaunchConfiguration('yaw')
+    headless = LaunchConfiguration('headless')
+    
+
 
     declare_x = DeclareLaunchArgument('x', default_value='0.25')
     declare_y = DeclareLaunchArgument('y', default_value='1.75')
     declare_yaw = DeclareLaunchArgument('yaw', default_value='0.0')
+    declare_headless = DeclareLaunchArgument(
+        'headless', 
+        default_value='false',
+        description='Whether to run Gazebo without the GUI'
+    )
+    gz_extra_args = PythonExpression([
+        "'-s' if '", headless, "' == 'true' else ''"
+    ])
 
     # Changement ici : le monde est dans pcb_simulation
     world_path = PathJoinSubstitution([pkg_pcb_simulation, "worlds", "arena.sdf"])
@@ -32,7 +43,7 @@ def generate_launch_description():
             PathJoinSubstitution([FindPackageShare("ros_gz_sim"), "launch", "gz_sim.launch.py"])
         ]),
         launch_arguments={
-            "gz_args": ["-r -v 4 --physics-engine gz-physics-dartsim-plugin ", world_path]
+            "gz_args": ["-r -v 4 --physics-engine gz-physics-dartsim-plugin ", world_path, " ", gz_extra_args]
         }.items(),
     )
 
@@ -55,7 +66,7 @@ def generate_launch_description():
         declare_x,
         declare_y,
         declare_yaw,
-
+        declare_headless,
         # Changement ici : la variable pointe vers pcb_simulation
         SetEnvironmentVariable(
             name='GZ_SIM_RESOURCE_PATH',
@@ -99,6 +110,12 @@ def generate_launch_description():
             ],
             parameters=[{'use_sim_time': True}],
             output='screen'
+        ),
+
+        Node(
+            package="car",
+            executable="gt_node",
+            parameters=[{'use_sim_time': True}]
         ),
 
         autonomy

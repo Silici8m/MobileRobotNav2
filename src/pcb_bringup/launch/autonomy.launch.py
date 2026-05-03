@@ -38,7 +38,7 @@ def generate_launch_description():
     rvizConfigPath = PathJoinSubstitution([FindPackageShare("pcb_description"), "config", "rviz", "config.rviz"])
     
     # La carte reste statique dans pcb_bringup
-    mapFilePath = PathJoinSubstitution([pkg_pcb_bringup, "config", "map", "map_cdfr_simple.yaml"])
+    mapFilePath = PathJoinSubstitution([pkg_pcb_bringup, "config", "map", "map_5cm.yaml"])
 
     # LA MAGIE ROS 2 : Sélectionne le dossier "sim" ou "real" selon l'argument use_sim
     config_folder = PythonExpression(['"sim" if "', use_sim, '" == "true" else "real"'])
@@ -117,7 +117,7 @@ def generate_launch_description():
 
         # Controllers
         TimerAction(
-            period=3.0,
+            period=5.0,
             actions=[
                 Node(
                     package="controller_manager",
@@ -140,12 +140,6 @@ def generate_launch_description():
             parameters = [controllerParamsPath, {'use_sim_time': use_sim_time}]
         ),
 
-        Node(
-            package="car",
-            executable="gt_node",
-            parameters=[{'use_sim_time': use_sim_time}]
-        ),
-
         # NAV2 & JENGA
         TimerAction(
             period=7.0,
@@ -157,18 +151,7 @@ def generate_launch_description():
                     output='screen',
                     parameters=[{'use_sim_time': use_sim_time}, jengaParamsPath]
                 ),
-                Node(
-                    package='nav2_lifecycle_manager',
-                    executable='lifecycle_manager',
-                    name='lifecycle_manager_application',
-                    output='screen',
-                    parameters=[
-                        {'use_sim_time': use_sim_time},
-                        {'autostart': True},
-                        {'node_names': lifecycle_nodes},
-                        {'bond_timeout': 0.0} # Pas de bonds pour ce petit manager
-                    ]
-                ),
+
                 IncludeLaunchDescription(
                     PythonLaunchDescriptionSource(
                         PathJoinSubstitution([pkg_pcb_bringup, "launch", "bringup_launch.py"])

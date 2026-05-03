@@ -16,7 +16,8 @@ public:
     std::vector<Point> getOutline(double Lj, double lj);
     
     std::string id;
-    std::string uuid;
+    std::string uuid_global;
+    std::string uuid_local;
     double x, y, theta;
     std::string color;
 };

@@ -1,0 +1,676 @@
+ros@zenbook-victor:/workspaces/MobileRobotNav2$ ros2 launch pcb_simulation sim.launch.py 
+[INFO] [launch]: All log files can be found below /home/ros/.ros/log/2026-05-03-16-07-03-182524-zenbook-victor-35965
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [35981]
+[INFO] [parameter_bridge-2]: process started with pid [35982]
+[INFO] [parameter_bridge-3]: process started with pid [35983]
+[INFO] [parameter_bridge-4]: process started with pid [35984]
+[INFO] [create-5]: process started with pid [35986]
+[INFO] [static_transform_publisher-6]: process started with pid [35987]
+[INFO] [rviz2-7]: process started with pid [35988]
+[INFO] [car_controller-8]: process started with pid [35989]
+[INFO] [gt_node-9]: process started with pid [35990]
+[static_transform_publisher-6] [INFO] [1777824424.004326450] [static_transform_publisher_9dNLFzSahUFh4g5t]: Spinning until stopped - publishing transform
+[static_transform_publisher-6] translation: ('0.250000', '1.750000', '0.000000')
+[static_transform_publisher-6] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-6] from 'map' to 'odom'
+[create-5] [INFO] [1777824424.024532817] [ros_gz_sim]: Requesting list of world names.
+[parameter_bridge-3] [INFO] [1777824424.119430344] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/scan (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1777824424.119454780] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1777824424.119532075] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/imu (gz.msgs.IMU) -> /imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[rviz2-7] [INFO] [1777824424.321758066] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-7] [INFO] [1777824424.321951899] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+[rviz2-7] [INFO] [1777824424.349634515] [rviz2]: Stereo is NOT SUPPORTED
+[gazebo-1] [Dbg] [gz.cc:166] Subscribing to [/gazebo/starting_world].
+[gazebo-1] [Dbg] [gz.cc:168] Waiting for a world to be set from the GUI...
+[gazebo-1] [Msg] Received world [/workspaces/MobileRobotNav2/install/share/pcb_simulation/worlds/arena.sdf] from the GUI.
+[gazebo-1] [Dbg] [gz.cc:172] Unsubscribing from [/gazebo/starting_world].
+[gazebo-1] [Msg] Gazebo Sim Server v8.11.0
+[gazebo-1] [Msg] Loading SDF world file[/workspaces/MobileRobotNav2/install/share/pcb_simulation/worlds/arena.sdf].
+[gazebo-1] [Msg] Serving entity system service on [/entity/system/add]
+[gazebo-1] [Msg] Loaded level [default]
+[gazebo-1] [Msg] No systems loaded from SDF, loading defaults
+[gazebo-1] [Dbg] [ServerConfig.cc:1034] Loaded (3) plugins from file [/home/ros/.gz/sim/8/server.config]
+[gazebo-1] [Dbg] [Physics.cc:906] Loaded [gz::physics::dartsim::Plugin] from library [/opt/ros/jazzy/opt/gz_physics_vendor/lib/gz-physics-7/engine-plugins/libgz-physics-dartsim-plugin.so]
+[gazebo-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Physics] for entity [1]
+[gazebo-1] [Msg] Create service on [/world/arena_world/create_multiple] (async)
+[gazebo-1] [Msg] Create service on [/world/arena_world/create_multiple/blocking] (blocking)
+[gazebo-1] [Msg] Remove service on [/world/arena_world/remove] (async)
+[gazebo-1] [Msg] Remove service on [/world/arena_world/remove/blocking] (blocking)
+[gazebo-1] [Msg] Pose service on [/world/arena_world/set_pose] (async)
+[gazebo-1] [Msg] Pose service on [/world/arena_world/set_pose/blocking] (blocking)
+[gazebo-1] [Msg] Pose service on [/world/arena_world/set_pose_vector] (async)
+[gazebo-1] [Msg] Pose service on [/world/arena_world/set_pose_vector/blocking] (blocking)
+[gazebo-1] [Msg] Light configuration service on [/world/arena_world/light_config] (async)
+[gazebo-1] [Msg] Light configuration service on [/world/arena_world/light_config/blocking] (blocking)
+[gazebo-1] [Msg] Physics service on [/world/arena_world/set_physics] (async)
+[gazebo-1] [Msg] Physics service on [/world/arena_world/set_physics/blocking] (blocking)
+[gazebo-1] [Msg] SphericalCoordinates service on [/world/arena_world/set_spherical_coordinates] (async)
+[gazebo-1] [Msg] SphericalCoordinates service on [/world/arena_world/set_spherical_coordinates/blocking] (blocking)
+[gazebo-1] [Msg] Enable collision service on [/world/arena_world/enable_collision] (async)
+[gazebo-1] [Msg] Enable collision service on [/world/arena_world/enable_collision/blocking] (blocking)
+[gazebo-1] [Msg] Disable collision service on [/world/arena_world/disable_collision] (async)
+[create-5] [INFO] [1777824424.744605646] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[gazebo-1] [Msg] Disable collision[Msg] Gazebo Sim GUI    v8.11.0
+[gazebo-1] [Dbg] [Gui.cc:275] Waiting for subscribers to [/gazebo/starting_world]...
+[gazebo-1] [Dbg] [Application.cc:96] Initializing application.
+[gazebo-1] [Dbg] [Application.cc:170] Qt using OpenGL graphics interface
+[gazebo-1] [GUI] [Dbg] [Application.cc:657] Create main window
+[gazebo-1] [GUI] [Dbg] [PathManager.cc:68] Requesting resource paths through [/gazebo/resource_paths/get]
+[gazebo-1] [GUI] [Dbg] [Gui.cc:355] GUI requesting list of world names. The server may be busy downloading resources. Please be patient.
+[gazebo-1] [GUI] [Dbg] [Gui.cc:413] Requesting GUI from [/world/arena_world/gui/info]...
+[gazebo-1] Received resource paths.
+[gazebo-1] [GUI] [Dbg] [GuiRunner.cc:149] Requesting initial state from [/world/arena_world/state]...
+[gazebo-1] [GUI] [Msg] Loading config [/home/ros/.gz/sim/8/gui.config]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [MinimalScene]
+[gazebo-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
+[gazebo-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
+[gazebo-1] [GUI] [Dbg] [MinimalScene.cc:986] Creating render thread interface for OpenGL
+[gazebo-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
+[gazebo-1] [GUI] [Dbg] [MinimalScene.cc:986] Creating render thread interface for OpenGL
+[gazebo-1] [GUI] [Msg] Added plugin [3D View] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [MinimalScene] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libMinimalScene.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [EntityContextMenuPlugin]
+[gazebo-1] [GUI] [Msg] Currently tracking topic on [/gui/currently_tracked]
+[gazebo-1] [GUI] [Msg] Added plugin [Entity Context Menu] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [EntityContextMenuPlugin] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libEntityContextMenuPlugin.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [GzSceneManager]
+[gazebo-1] [GUI] [Msg] Added plugin [Scene Manager] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [GzSceneManager] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libGzSceneManager.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [InteractiveViewControl]
+[gazebo-1] [GUI] [Msg] Camera view controller topic advertised on [/gui/camera/view_control]
+[gazebo-1] [GUI] [Msg] Camera reference visual topic advertised on [/gui/camera/view_control/reference_visual]
+[gazebo-1] [GUI] [Msg] Camera view control sensitivity advertised on [/gui/camera/view_control/sensitivity]
+[gazebo-1] [GUI] [Msg] Added plugin [Interactive view control] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [InteractiveViewControl] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libInteractiveViewControl.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [CameraTracking]
+[gazebo-1] [GUI] [Msg] Added plugin [Camera tracking] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [CameraTracking] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libCameraTracking.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [MarkerManager]
+[gazebo-1] [GUI] [Msg] Listening to stats on [/world/arena_world/stats]
+[gazebo-1] [GUI] [Msg] Added plugin [Marker Manager] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [MarkerManager] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libMarkerManager.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [SelectEntities]
+[gazebo-1] [GUI] [Msg] Added plugin [Select entities] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [SelectEntities] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libSelectEntities.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Spawn]
+[gazebo-1] [GUI] [Msg] Added plugin [Spawn] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [Spawn] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libSpawn.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [VisualizationCapabilities]
+[gazebo-1] [GUI] [Msg] View as transparent service on [/gui/view/transparent]
+[gazebo-1] [GUI] [Msg] View as wireframes service on [/gui/view/wireframes]
+[gazebo-1] [GUI] [Msg] View center of mass service on [/gui/view/com]
+[gazebo-1] [GUI] [Msg] View inertia service on [/gui/view/inertia]
+[gazebo-1] [GUI] [Msg] View collisions service on [/gui/view/collisions]
+[gazebo-1] [GUI] [Msg] View joints service on [/gui/view/joints]
+[gazebo-1] [GUI] [Msg] View frames service on [/gui/view/frames]
+[gazebo-1] [GUI] [Msg] Added plugin [Visualization capabilities] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [VisualizationCapabilities] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libVisualizationCapabilities.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [WorldControl]
+[gazebo-1] [GUI] [Msg] Using world control service [/world/arena_world/control]
+[gazebo-1] [GUI] [Msg] Listening to stats on [/world/arena_world/stats]
+[gazebo-1] [GUI] [Dbg] [WorldControl.cc:237] Using an event to share WorldControl msgs with the server
+[gazebo-1] [GUI] [Msg] Added plugin [World control] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [WorldControl] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libWorldControl.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [WorldStats]
+[gazebo-1] [GUI] [Msg] Listening to stats on [/world/arena_world/stats]
+[gazebo-1] [GUI] [Msg] Added plugin [World stats] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [WorldStats] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libWorldStats.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Shapes]
+[gazebo-1] [GUI] [Msg] Added plugin [Shapes] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [Shapes] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libShapes.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Lights]
+[gazebo-1] [GUI] [Msg] Added plugin [Lights] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [Lights] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libLights.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [TransformControl]
+[gazebo-1] [GUI] [Msg] Added plugin [Transform control] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [TransformControl] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libTransformControl.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [Screenshot]
+[gazebo-1] [GUI] [Msg] Screenshot service on [/gui/screenshot]
+[gazebo-1] [GUI] [Msg] Added plugin [Screenshot] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [Screenshot] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libScreenshot.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [CopyPaste]
+[gazebo-1] [GUI] [Msg] Added plugin [Copy/Paste] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [CopyPaste] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libCopyPaste.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [ComponentInspector]
+[gazebo-1] [GUI] [Msg] Added plugin [Component inspector] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [ComponentInspector] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libComponentInspector.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:528] Loading plugin [EntityTree]
+[gazebo-1] [GUI] [Msg] Currently tracking topic on [/gui/currently_tracked]
+[gazebo-1] [GUI] [Msg] Added plugin [Entity tree] to main window
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file::/WorldStats/WorldStats.qml:53:3: QML RowLayout: Binding loop detected for property "x"
+[gazebo-1] libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+[gazebo-1] 
+[gazebo-1] libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+[gazebo-1] 
+[create-5] [INFO] [1777824425.745357021] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[INFO] [robot_state_publisher-10]: process started with pid [36341]
+[robot_state_publisher-10] [INFO] [1777824426.153738382] [robot_state_publisher]: Robot initialized
+[gazebo-1] [GUI] [Msg] Loaded pl1;32m service on [/world/arena_world/disable_collision/blocking] (blocking)
+[gazebo-1] [Msg] Material service on [/world/arena_world/visual_config] (async)
+[gazebo-1] [Msg] Material service on [/world/arena_world/visual_config/blocking] (blocking)
+[gazebo-1] [Msg] Material service on [/world/arena_world/wheel_slip] (async)
+[gazebo-1] [Msg] Material service on [/world/arena_world/wheel_slip/blocking] (blocking)
+[gazebo-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::UserCommands] for entity [1]
+[gazebo-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::SceneBroadcaster] for entity [1]
+[gazebo-1] [Msg] Serving world controls on [/world/arena_world/control], [/world/arena_world/control/state] and [/world/arena_world/playback/control]
+[gazebo-1] [Msg] Serving GUI information on [/world/arena_world/gui/info]
+[gazebo-1] [Msg] World [arena_world] initialized with [default_physics] physics profile.
+[gazebo-1] [Msg] Serving world SDF generation service on [/world/arena_world/generate_world_sdf]
+[gazebo-1] [Msg] Serving world names on [/gazebo/worlds]
+[gazebo-1] [Msg] Resource path add service on [/gazebo/resource_paths/add].
+[gazebo-1] [Msg] Resource path get service on [/gazebo/resource_paths/get].
+[gazebo-1] [Msg] Resource path resolve service on [/gazebo/resource_paths/resolve].
+[gazebo-1] [Msg] Resource paths published on [/gazebo/resource_paths].
+[gazebo-1] [Msg] Server control service on [/server_control].
+[gazebo-1] [Msg] Found no publishers on /stats, adding root stats topic
+[gazebo-1] [Msg] Found no publishers on /clock, adding root clock topic
+[gazebo-1] [Dbg] [SimulationRunner.cc:551] Creating PostUpdate worker threads: 2
+[gazebo-1] [Dbg] [SimulationRunner.cc:562] Creating postupdate worker thread (0)
+[gazebo-1] [Msg] Serving scene information on [/world/arena_world/scene/info]
+[gazebo-1] [Msg] Serving graph information on [/world/arena_world/scene/graph]
+[gazebo-1] [Msg] Serving full state on [/world/arena_world/state]
+[gazebo-1] [Msg] Serving full state (async) on [/world/arena_world/state_async]
+[gazebo-1] [Msg] Publishing scene information on [/world/arena_world/scene/info]
+[gazebo-1] [Msg] Publishing entity deletions on [/world/arena_world/scene/deletion]
+[gazebo-1] [Msg] Publishing state changes on [/world/arena_world/state]
+[gazebo-1] [Msg] Publishing pose messages on [/world/arena_world/pose/info]
+[gazebo-1] [Msg] Publishing dynamic pose messages on [/world/arena_world/dynamic_pose/info]
+[create-5] [INFO] [1777824426.594608058] [ros_gz_sim]: Entity creation successful.
+[gazebo-1] [Dbg] [EntityComponentManager.cc:1656] Updated state thread iterators: 16 threads processing around 2 entities each.
+[gazebo-1] Warning [Utils.cc:132] [/sdf/model[@name="simple_robot"]/link[@name="base_footprint"]/sensor[@name="imu_sensor"]/noise:<urdf-string>:L0]: XML Element[noise], child of element[sensor], not defined in SDF. Copying[noise] as children of [sensor].
+[gazebo-1] Warning [Utils.cc:132] [/sdf/model[@name="simple_robot"]/link[@name="base_footprint"]/sensor[@name="lidar"]/gz_frame_id:<urdf-string>:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gazebo-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Blue
+[gazebo-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Blue
+[gazebo-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Blue
+[gazebo-1] [Wrn] [SdfEntityCreator.cc:933] Gazebo does not support Ogre material scripts. See https://gazebosim.org/api/sim/8/migrationsdf.html#:~:text=Materials for details.
+[gazebo-1] [Wrn] [SdfEntityCreator.cc:949] Using an internal gazebo.material to parse Gazebo/Blue
+[INFO] [create-5]: process has finished cleanly [pid 35986]
+[gazebo-1] [INFO] [1777824426.806891172] [gz_ros_control]: Loading controller_manager
+[gazebo-1] [INFO] [1777824426.845291478] [controller_manager]: Using ROS clock for triggering controller manager cycles.
+[gazebo-1] [INFO] [1777824426.853558197] [controller_manager]: Subscribing to '/robot_description' topic for robot description.
+[gazebo-1] [WARN] [1777824426.857698830] [gz_ros_control]: Waiting RM to load and initialize hardware...
+[INFO] [spawner-11]: process started with pid [36404]
+[INFO] [spawner-12]: process started with pid [36405]
+[gazebo-1] [INFO] [1777824426.978160136] [controller_manager]: Received robot description from topic.
+[gazebo-1] [INFO] [1777824426.978262017] [controller_manager]: Enforcing command limits is disabled. Command limits from URDF will be ignored.
+[gazebo-1] [INFO] [1777824426.984783920] [gz_ros_control]: The position_proportional_gain has been set to: 0.1
+[gazebo-1] [INFO] [1777824426.984939591] [gz_ros_control]: Loading joint: lf_joint
+[gazebo-1] [INFO] [1777824426.984954439] [gz_ros_control]:      State:
+[gazebo-1] [INFO] [1777824426.984964738] [gz_ros_control]:               position
+[gazebo-1] [INFO] [1777824426.984974336] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824426.984987902] [gz_ros_control]:      Command:
+[gazebo-1] [INFO] [1777824426.984993412] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824426.985033627] [gz_ros_control]: Loading joint: rf_joint
+[gazebo-1] [INFO] [1777824426.985039608] [gz_ros_control]:      State:
+[gazebo-1] [INFO] [1777824426.985052352] [gz_ros_control]:               position
+[gazebo-1] [INFO] [1777824426.985058363] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824426.985063894] [gz_ros_control]:      Command:
+[gazebo-1] [INFO] [1777824426.985068683] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824426.985090894] [gz_ros_control]: Loading joint: rb_joint
+[gazebo-1] [INFO] [1777824426.985096134] [gz_ros_control]:      State:
+[gazebo-1] [INFO] [1777824426.985101414] [gz_ros_control]:               position
+[gazebo-1] [INFO] [1777824426.985109479] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824426.985114819] [gz_ros_control]:      Command:
+[gazebo-1] [INFO] [1777824426.985119628] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824426.985140537] [gz_ros_control]: Loading joint: lb_joint
+[gazebo-1] [INFO] [1777824426.985145797] [gz_ros_control]:      State:
+[gazebo-1] [INFO] [1777824426.985151087] [gz_ros_control]:               position
+[gazebo-1] [INFO] [1777824426.985156357] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824426.985161216] [gz_ros_control]:      Command:
+[gazebo-1] [INFO] [1777824426.985166215] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824426.985234984] [gz_ros_control]: Loading sensor: imu_sensor
+[gazebo-1] [INFO] [1777824426.985247297] [gz_ros_control]:      State:
+[gazebo-1] [INFO] [1777824426.985382851] [controller_manager]: Initialize hardware 'RobotController' 
+[gazebo-1] [WARN] [1777824426.985409751] [controller_manager.hardware_component.system.RobotController]: Executor is not available during hardware component initialization for 'RobotController'. Skipping node creation!
+[gazebo-1] [INFO] [1777824426.985510600] [controller_manager]: Successful initialization of hardware 'RobotController'
+[gazebo-1] [INFO] [1777824426.985739038] [controller_manager]: Activating component 'RobotController'.
+[gazebo-1] [INFO] [1777824426.985775286] [resource_manager]: 'configure' hardware 'RobotController' 
+[gazebo-1] [INFO] [1777824426.985787429] [gz_ros_control]: System Successfully configured!
+[gazebo-1] [INFO] [1777824426.985798289] [resource_manager]: Successful 'configure' of hardware 'RobotController'
+[gazebo-1] [INFO] [1777824426.985814499] [resource_manager]: 'activate' hardware 'RobotController' 
+[gazebo-1] [INFO] [1777824426.985841871] [resource_manager]: Successful 'activate' of hardware 'RobotController'
+[gazebo-1] [WARN] [1777824426.985984828] [controller_manager]: Component 'RobotController' does not have read or write statistics initialized, skipping registration.
+[gazebo-1] [INFO] [1777824426.986004004] [controller_manager]: Resource Manager has been successfully initialized. Starting Controller Manager services...
+[spawner-11] [INFO] [1777824427.598610861] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-11] [INFO] [1777824427.863323330] [spawner_joint_state_broadcaster]: Setting controller param "params_file" to "['/tmp/launch_params_bp6zp5ge']" for joint_state_broadcaster
+[gazebo-1] [INFO] [1777824427.866474661] [controller_manager]: Loading controller : 'joint_state_broadcaster' of type 'joint_state_broadcaster/JointStateBroadcaster'
+[gazebo-1] [INFO] [1777824427.866584266] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[gazebo-1] [INFO] [1777824427.879204478] [controller_manager]: Controller 'joint_state_broadcaster' node arguments: --ros-args --params-file /workspaces/MobileRobotNav2/install/share/car/config/sim/robot_controller.yaml -p use_sim_time:=true --params-file /tmp/launch_params_bp6zp5ge --param use_sim_time:=true 
+[spawner-11] [INFO] [1777824427.907365029] [spawner_joint_state_broadcaster]: Loaded joint_state_broadcaster
+[gazebo-1] [INFO] [1777824427.909278793] [controller_manager]: Configuring controller: 'joint_state_broadcaster'
+[gazebo-1] [INFO] [1777824427.909652853] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[gazebo-1] [INFO] [1777824428.042069866] [controller_manager]: Activating controllers: [ joint_state_broadcaster ]
+[gazebo-1] [WARN] [1777824428.874028213] [rcl.logging_rosout]: Publisher already registered for node name: 'gz_ros_control'. If this is due to multiple nodes with the same name then all logs for the logger named 'gz_ros_control' will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[gazebo-1] [INFO] [1777824428.886061345] [gz_ros_control]: Loading controller_manager
+[gazebo-1] [WARN] [1777824428.886458449] [rcl.logging_rosout]: Publisher already registered for node name: 'controller_manager'. If this is due to multiple nodes with the same name then all logs for the logger named 'controller_manager' will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[gazebo-1] [INFO] [1777824429.029884547] [controller_manager]: Using ROS clock for triggering controller manager cycles.
+[gazebo-1] [INFO] [1777824429.031600139] [controller_manager]: Subscribing to '/robot_description' topic for robot description.
+[gazebo-1] [WARN] [1777824429.032258422] [gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [INFO] [1777824429.042205007] [controller_manager]: Received robot description from topic.
+[gazebo-1] [INFO] [1777824429.042297300] [controller_manager]: Enforcing command limits is disabled. Command limits from URDF will be ignored.
+[gazebo-1] [INFO] [1777824429.044017020] [gz_ros_control]: The position_proportional_gain has been set to: 0.1
+[gazebo-1] [INFO] [1777824429.044066803] [gz_ros_control]: Loading joint: lf_joint
+[gazebo-1] [INFO] [1777824429.044076101] [gz_ros_control]:      State:
+[gazebo-1] [INFO] [1777824429.044082673] [gz_ros_control]:               position
+[gazebo-1] [INFO] [1777824429.044090407] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824429.044098252] [gz_ros_control]:      Command:
+[gazebo-1] [INFO] [1777824429.044104464] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824429.044124091] [gz_ros_control]: Loading joint: rf_joint
+[gazebo-1] [INFO] [1777824429.044130753] [gz_ros_control]:      State:
+[gazebo-1] [INFO] [1777824429.044136945] [gz_ros_control]:               position
+[gazebo-1] [INFO] [1777824429.044143898] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824429.044150059] [gz_ros_control]:      Command:
+[gazebo-1] [INFO] [1777824429.044155960] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824429.044166340] [gz_ros_control]: Loading joint: rb_joint
+[gazebo-1] [INFO] [1777824429.044172832] [gz_ros_control]:      State:
+[gazebo-1] [INFO] [1777824429.044178753] [gz_ros_control]:               position
+[gazebo-1] [INFO] [1777824429.044185746] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824429.044192679] [gz_ros_control]:      Command:
+[gazebo-1] [INFO] [1777824429.044198430] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824429.044208799] [gz_ros_control]: Loading joint: lb_joint
+[gazebo-1] [INFO] [1777824429.044214650] [gz_ros_control]:      State:
+[gazebo-1] [INFO] [1777824429.044219980] [gz_ros_control]:               position
+[gazebo-1] [INFO] [1777824429.044225831] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824429.044231742] [gz_ros_control]:      Command:
+[gazebo-1] [INFO] [1777824429.044236982] [gz_ros_control]:               velocity
+[gazebo-1] [INFO] [1777824429.044264904] [gz_ros_control]: Loading sensor: imu_sensor
+[gazebo-1] [INFO] [1777824429.044281936] [gz_ros_control]:      State:
+[gazebo-1] [INFO] [1777824429.044319627] [controller_manager]: Initialize hardware 'RobotController' 
+[gazebo-1] [WARN] [1777824429.044340215] [controller_manager.hardware_component.system.RobotController]: Executor is not available during hardware component initialization for 'RobotController'. Skipping node creation!
+[gazebo-1] [INFO] [1777824429.044377465] [controller_manager]: Successful initialization of hardware 'RobotController'
+[gazebo-1] [INFO] [1777824429.044483173] [controller_manager]: Activating component 'RobotController'.
+[gazebo-1] [INFO] [1777824429.044496748] [resource_manager]: 'configure' hardware 'RobotController' 
+[gazebo-1] [INFO] [1777824429.044548766] [gz_ros_control]: System Successfully configured!
+[gazebo-1] [INFO] [1777824429.044559426] [resource_manager]: Successful 'configure' of hardware 'RobotController'
+[gazebo-1] [INFO] [1777824429.044566008] [resource_manager]: 'activate' hardware 'RobotController' 
+[gazebo-1] [INFO] [1777824429.044581006] [resource_manager]: Successful 'activate' of hardware 'RobotController'
+[gazebo-1] [WARN] [1777824429.044617104] [controller_manager]: Component 'RobotController' does not have read or write statistics initialized, skipping registration.
+[gazebo-1] [INFO] [1777824429.044630900] [controller_manager]: Resource Manager has been successfully initialized. Starting Controller Manager services...
+[gazebo-1] [WARN] [1777824431.045561057] [gz_ros_control]:  Desired controller update period (0.02 s) is slower than the gazebo simulation period (0.001 s).
+[gazebo-1] [INFO] [1777824431.046376764] [controller_manager]: Successfully switched controllers!
+[gazebo-1] Warning [Utils.cc:132] [/sdf/model[@name="simple_robot"]/link[@name="base_footprint"]/sensor[@name="imu_sensor"]/noise:<data-string>:L75]: XML Element[noise], child of element[sensor], not defined in SDF. Copying[noise] as children of [sensor].
+[gazebo-1] Warning [Utils.cc:132] [/sdf/model[@name="simple_robot"]/link[@name="base_footprint"]/sensor[@name="lidar"]/gz_frame_id:<data-string>:L114]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gazebo-1] libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+[gazebo-1] 
+[gazebo-1] libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+[gazebo-1] 
+[gazebo-1] [INFO] [1777824431.648139425] [gz_ros_control]: IMU imu_sensor has a topic name: imu
+[gazebo-1] [INFO] [1777824431.648143373] [gz_ros_control]: IMU imu_sensor has a topic name: imu
+[gazebo-1] [INFO] [1777824431.873746879] [controller_manager]: Loading controller : 'omni_wheel_drive_controller' of type 'omni_wheel_drive_controller/OmniWheelDriveController'
+[gazebo-1] [INFO] [1777824431.873816189] [controller_manager]: Loading controller 'omni_wheel_drive_controller'
+[gazebo-1] [INFO] [1777824431.873765354] [controller_manager]: Loading controller : 'omni_wheel_drive_controller' of type 'omni_wheel_drive_controller/OmniWheelDriveController'
+[gazebo-1] [INFO] [1777824431.873873166] [controller_manager]: Loading controller 'omni_wheel_drive_controller'
+[gazebo-1] [INFO] [1777824431.881749755] [controller_manager]: Controller 'omni_wheel_drive_controller' node arguments: --ros-args --params-file /workspaces/MobileRobotNav2/install/share/pcb_bringup/config/sim/robot_controller.yaml -p use_sim_time:=true --params-file /workspaces/MobileRobotNav2/install/share/pcb_bringup/config/sim/robot_controller.yaml --params-file /tmp/launch_params_do2o8phc --param use_sim_time:=true 
+[gazebo-1] [INFO] [1777824431.881865301] [controller_manager]: Controller 'omni_wheel_drive_controller' node arguments: --ros-args --params-file /workspaces/MobileRobotNav2/install/share/car/config/sim/robot_controller.yaml -p use_sim_time:=true --params-file /workspaces/MobileRobotNav2/install/share/pcb_bringup/config/sim/robot_controller.yaml --params-file /tmp/launch_params_do2o8phc --param use_sim_time:=true 
+[gazebo-1] [WARN] [1777824431.883394004] [rcl.logging_rosout]: Publisher already registered for node name: 'omni_wheel_drive_controller'. If this is due to multiple nodes with the same name then all logs for the logger named 'omni_wheel_drive_controller' will go out over the existing publisher. As soon as any node with that name is destructed it will unregister the publisher, preventing any further logs for that name from being published on the rosout topic.
+[gazebo-1] [INFO] [1777824431.931940588] [controller_manager]: Configuring controller: 'omni_wheel_drive_controller'
+[gazebo-1] [INFO] [1777824431.931945567] [controller_manager]: Configuring controller: 'omni_wheel_drive_controller'
+[gazebo-1] [INFO] [1777824431.951160027] [controller_manager]: Activating controllers: [ omni_wheel_drive_controller ]
+[gazebo-1] [INFO] [1777824431.951166268] [controller_manager]: Activating controllers: [ omni_wheel_drive_controller ]
+[gazebo-1] [INFO] [1777824431.968294201] [controller_manager]: Successfully switched controllers!
+[gazebo-1] [INFO] [1777824431.968304710] [controller_manager]: Successfully switched controllers!
+[INFO] [spawner-11]: process has finished cleanly [pid 36404]
+[INFO] [spawner-12]: process has finished cleanly [pid 36405]
+[gazebo-1] ugin [EntityTree] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libEntityTree.so]
+[gazebo-1] [GUI] [Dbg] [Application.cc:398] Loading window config
+[gazebo-1] [GUI] [Msg] Using server control service [/server_control]
+[gazebo-1] [GUI] [Dbg] [Application.cc:671] Applying config
+[gazebo-1] [GUI] [Dbg] [MinimalScene.cc:802] Creating gz-rendering interface for OpenGL
+[gazebo-1] [GUI] [Dbg] [MinimalScene.cc:986] Creating render thread interface for OpenGL
+[gazebo-1] [GUI] [Msg] Loading plugin [gz-rendering-ogre2]
+[gazebo-1] [GUI] [Dbg] [MinimalScene.cc:749] Create scene [scene]
+[gazebo-1] [GUI] [Dbg] [MinimalScene.cc:1037] Creating texture node render interface for OpenGL
+[gazebo-1] [GUI] [Dbg] [TransformControl.cc:453] TransformControl plugin is using camera [scene::Camera(65527)]
+[gazebo-1] [GUI] [Dbg] [Spawn.cc:308] Spawn plugin is using camera [scene::Camera(65527)]
+[gazebo-1] [GUI] [Dbg] [SelectEntities.cc:452] SelectEntities plugin is using camera [scene::Camera(65527)]
+[gazebo-1] [GUI] [Dbg] [MarkerManager.cc:169] Advertise /marker/list service.
+[gazebo-1] [GUI] [Dbg] [MarkerManager.cc:179] Advertise /marker/list.
+[gazebo-1] [GUI] [Dbg] [MarkerManager.cc:189] Advertise /marker_array.
+[gazebo-1] [GUI] [Dbg] [CameraTracking.cc:205] CameraTrackingPrivate plugin is moving camera [scene::Camera(65527)]
+[gazebo-1] [GUI] [Msg] Move to service on [/gui/move_to]
+[gazebo-1] [GUI] [Msg] Follow service on [/gui/follow] (deprecated)
+[gazebo-1] [GUI] [Msg] Tracking topic on [/gui/track]
+[gazebo-1] [GUI] [Msg] Tracking status topic on [/gui/currently_tracked]
+[gazebo-1] [GUI] [Msg] Move to pose service on [/gui/move_to/pose]
+[gazebo-1] [GUI] [Msg] Camera pose topic advertised on [/gui/camera/pose]
+[gazebo-1] [GUI] [Msg] Follow offset service on [/gui/follow/offset] (deprecated)
+[gazebo-1] [GUI] [Dbg] [InteractiveViewControl.cc:176] InteractiveViewControl plugin is moving camera [scene::Camera(65527)]
+[gazebo-1] [GUI] [Dbg] [EntityContextMenuPlugin.cc:79] Entity context menu plugin is using camera [scene::Camera(65527)]
+[gazebo-1] [Dbg] [SystemManager.cc:80] Loaded system [gz_ros2_control::GazeboSimROS2ControlPlugin] for entity [26]
+[gazebo-1] [Dbg] [Sensors.cc:697] Configuring Sensors system
+[gazebo-1] [Dbg] [Sensors.cc:557] SensorsPrivate::Run
+[gazebo-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Sensors] for entity [26]
+[gazebo-1] [Dbg] [Sensors.cc:532] SensorsPrivate::RenderThread started
+[gazebo-1] [Dbg] [Sensors.cc:337] Waiting for init
+[gazebo-1] [Dbg] [SystemManager.cc:80] Loaded system [gz::sim::systems::Imu] for entity [26]
+[gazebo-1] [Dbg] [SystemManager.cc:80] Loaded system [gz_ros2_control::GazeboSimROS2ControlPlugin] for entity [26]
+[gazebo-1] [Dbg] [UserCommands.cc:1094] Created entity [26] named [simple_robot]
+[gazebo-1] [Dbg] [SimulationRunner.cc:578] Exiting postupdate worker thread (0)
+[gazebo-1] [Dbg] [SimulationRunner.cc:551] Creating PostUpdate worker threads: 6
+[gazebo-1] [Dbg] [SimulationRunner.cc:562] Creating postupdate worker thread (0)
+[gazebo-1] [Dbg] [SimulationRunner.cc:562] Creating postupdate worker thread (1)
+[gazebo-1] [Dbg] [SimulationRunner.cc:562] Creating postupdate worker thread (2)
+[gazebo-1] [Dbg] [SimulationRunner.cc:562] Creating postupdate worker thread (3)
+[gazebo-1] [Dbg] [SimulationRunner.cc:562] Creating postupdate worker thread (4)
+[gazebo-1] [Dbg] [Sensors.cc:953] Initialization needed
+[gazebo-1] [Dbg] [Sensors.cc:349] Initializing render context
+[gazebo-1] [Msg] Loading plugin [gz-rendering-ogre2]
+[gazebo-1] [Dbg] [ImuSensor.cc:150] IMU data for [simple_robot::base_footprint::imu_sensor] advertised on [imu]
+[gazebo-1] [Dbg] [RenderUtil.cc:2646] Create scene [scene]
+[gazebo-1] [Dbg] [Sensors.cc:391] Rendering Thread initialized
+[gazebo-1] Initialization needed
+[gazebo-1] [Dbg] [Lidar.cc:139] Laser scans for [simple_robot::base_footprint::lidar] advertised on [/scan]
+[gazebo-1] [Dbg] [GpuLidarSensor.cc:164] Lidar points for [simple_robot::base_footprint::lidar] advertised on [/scan/points]
+[INFO] [jenga_manager_node-13]: process started with pid [36624]
+[INFO] [lifecycle_manager-14]: process started with pid [36625]
+[INFO] [component_container_isolated-15]: process started with pid [36626]
+[spawner-11] [INFO] [1777824431.650811238] [spawner_joint_state_broadcaster]: Configured and activated joint_state_broadcaster
+[spawner-12] [INFO] [1777824431.864614849] [spawner_omni_wheel_drive_controller]: Setting controller param "params_file" to "['/workspaces/MobileRobotNav2/install/share/pcb_bringup/config/sim/robot_controller.yaml', '/tmp/launch_params_do2o8phc']" for omni_wheel_drive_controller
+[spawner-12] [INFO] [1777824431.930123636] [spawner_omni_wheel_drive_controller]: Loaded omni_wheel_drive_controller
+[spawner-12] [INFO] [1777824431.989875362] [spawner_omni_wheel_drive_controller]: Configured and activated omni_wheel_drive_controller
+[lifecycle_manager-14] [INFO] [1777824432.343936678] [lifecycle_manager_application]: Creating
+[lifecycle_manager-14] [INFO] [1777824432.356841933] [lifecycle_manager_application]: Creating and initializing lifecycle service clients
+[lifecycle_manager-14] [INFO] [1777824432.428802952] [lifecycle_manager_application]: Starting managed nodes bringup...
+[lifecycle_manager-14] [INFO] [1777824432.428857053] [lifecycle_manager_application]: Configuring jenga_manager
+[jenga_manager_node-13] [INFO] [1777824432.429184436] [jenga_manager]: Configuring Jenga Manager...
+[lifecycle_manager-14] [INFO] [1777824432.435723571] [lifecycle_manager_application]: Activating jenga_manager
+[jenga_manager_node-13] [INFO] [1777824432.435927793] [jenga_manager]: Activating and loading groups...
+[component_container_isolated-15] [INFO] [1777824432.487497779] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libmap_server_core.so
+[component_container_isolated-15] [INFO] [1777824432.526781127] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::CostmapFilterInfoServer>
+[component_container_isolated-15] [INFO] [1777824432.526838094] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::MapSaver>
+[component_container_isolated-15] [INFO] [1777824432.526849235] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::MapServer>
+[component_container_isolated-15] [INFO] [1777824432.526857350] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_map_server::MapServer>
+[component_container_isolated-15] [INFO] [1777824432.552052448] [map_server]: 
+[component_container_isolated-15]       map_server lifecycle node launched. 
+[component_container_isolated-15]       Waiting on external lifecycle transitions to activate
+[component_container_isolated-15]       See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-15] [INFO] [1777824432.552149210] [map_server]: Creating
+[component_container_isolated-15] [INFO] [1777824432.553152849] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libnav2_lifecycle_manager_core.so
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/map_server' in container '/nav2_container'
+[component_container_isolated-15] [INFO] [1777824432.555701892] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-15] [INFO] [1777824432.555739012] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-15] [INFO] [1777824432.579317232] [lifecycle_manager_localization]: Creating
+[component_container_isolated-15] [INFO] [1777824432.588273453] [lifecycle_manager_localization]: Creating and initializing lifecycle service clients
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/lifecycle_manager_localization' in container '/nav2_container'
+[component_container_isolated-15] [INFO] [1777824432.588566411] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libcontroller_server_core.so
+[component_container_isolated-15] [INFO] [1777824432.599034373] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_controller::ControllerServer>
+[component_container_isolated-15] [INFO] [1777824432.599094836] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_controller::ControllerServer>
+[component_container_isolated-15] [INFO] [1777824432.601470685] [lifecycle_manager_localization]: Starting managed nodes bringup...
+[component_container_isolated-15] [INFO] [1777824432.601947017] [lifecycle_manager_localization]: Configuring map_server
+[component_container_isolated-15] [INFO] [1777824432.602338901] [map_server]: Configuring
+[component_container_isolated-15] [INFO] [1777824432.602454597] [map_io]: Loading yaml file: /workspaces/MobileRobotNav2/install/share/pcb_bringup/config/map/map_cdfr_simple.yaml
+[component_container_isolated-15] [INFO] [1777824432.603935130] [map_io]: resolution: 0.01
+[component_container_isolated-15] [INFO] [1777824432.603976407] [map_io]: origin[0]: -0.05
+[component_container_isolated-15] [INFO] [1777824432.603985885] [map_io]: origin[1]: -0.05
+[component_container_isolated-15] [INFO] [1777824432.603992126] [map_io]: origin[2]: 0
+[component_container_isolated-15] [INFO] [1777824432.603998869] [map_io]: free_thresh: 0.3
+[component_container_isolated-15] [INFO] [1777824432.604005542] [map_io]: occupied_thresh: 0.7
+[component_container_isolated-15] [INFO] [1777824432.604015991] [map_io]: mode: trinary
+[component_container_isolated-15] [INFO] [1777824432.604025188] [map_io]: negate: 0
+[component_container_isolated-15] [INFO] [1777824432.607600273] [map_io]: Loading image_file: /workspaces/MobileRobotNav2/install/share/pcb_bringup/config/map/map_cdfr_simple.pgm
+[component_container_isolated-15] [INFO] [1777824432.611659744] [map_io]: Read map /workspaces/MobileRobotNav2/install/share/pcb_bringup/config/map/map_cdfr_simple.pgm: 310 X 210 map @ 0.01 m/cell
+[component_container_isolated-15] [INFO] [1777824432.623206686] [lifecycle_manager_localization]: Activating map_server
+[component_container_isolated-15] [INFO] [1777824432.623352489] [map_server]: Activating
+[component_container_isolated-15] [INFO] [1777824432.623716400] [map_server]: Creating bond (map_server) to lifecycle manager.
+[rviz2-7] [INFO] [1777824432.634817377] [rviz2]: Trying to create a map of size 310 x 210 using 1 swatches
+[component_container_isolated-15] [INFO] [1777824432.635775521] [controller_server]: 
+[component_container_isolated-15]       controller_server lifecycle node launched. 
+[component_container_isolated-15]       Waiting on external lifecycle transitions to activate
+[component_container_isolated-15]       See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-15] [INFO] [1777824432.648101121] [controller_server]: Creating controller server
+[rviz2-7] [ERROR] [1777824432.667125485] [rviz2]: rviz/glsl120/indexed_8bit_image.vert
+[rviz2-7] rviz/glsl120/indexed_8bit_image.frag
+[rviz2-7]  GLSL link result : 
+[rviz2-7] active samplers with a different type refer to the same texture image unit
+[component_container_isolated-15] [INFO] [1777824432.674435924] [local_costmap.local_costmap]: 
+[component_container_isolated-15]       local_costmap lifecycle node launched. 
+[component_container_isolated-15]       Waiting on external lifecycle transitions to activate
+[component_container_isolated-15]       See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-15] [INFO] [1777824432.678993157] [local_costmap.local_costmap]: Creating Costmap
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/controller_server' in container '/nav2_container'
+[component_container_isolated-15] [INFO] [1777824432.685336896] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libsmoother_server_core.so
+[component_container_isolated-15] [INFO] [1777824432.690664943] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_smoother::SmootherServer>
+[component_container_isolated-15] [INFO] [1777824432.690785338] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_smoother::SmootherServer>
+[component_container_isolated-15] [INFO] [1777824432.720126821] [smoother_server]: 
+[component_container_isolated-15]       smoother_server lifecycle node launched. 
+[component_container_isolated-15]       Waiting on external lifecycle transitions to activate
+[component_container_isolated-15]       See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-15] [INFO] [1777824432.722590183] [smoother_server]: Creating smoother server
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/smoother_server' in container '/nav2_container'
+[component_container_isolated-15] [INFO] [1777824432.726565597] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libplanner_server_core.so
+[component_container_isolated-15] [INFO] [1777824432.729041874] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_planner::PlannerServer>
+[component_container_isolated-15] [INFO] [1777824432.729104602] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_planner::PlannerServer>
+[component_container_isolated-15] [INFO] [1777824432.732602401] [lifecycle_manager_localization]: Server map_server connected with bond.
+[component_container_isolated-15] [INFO] [1777824432.732666311] [lifecycle_manager_localization]: Managed nodes are active
+[component_container_isolated-15] [INFO] [1777824432.732686098] [lifecycle_manager_localization]: Creating bond timer...
+[component_container_isolated-15] [INFO] [1777824432.762761845] [planner_server]: 
+[component_container_isolated-15]       planner_server lifecycle node launched. 
+[component_container_isolated-15]       Waiting on external lifecycle transitions to activate
+[component_container_isolated-15]       See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-15] [INFO] [1777824432.765314576] [planner_server]: Creating
+[component_container_isolated-15] [INFO] [1777824432.793179533] [global_costmap.global_costmap]: 
+[component_container_isolated-15]       global_costmap lifecycle node launched. 
+[component_container_isolated-15]       Waiting on external lifecycle transitions to activate
+[component_container_isolated-15]       See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-15] [INFO] [1777824432.793938464] [global_costmap.global_costmap]: Creating Costmap
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/planner_server' in container '/nav2_container'
+[component_container_isolated-15] [INFO] [1777824432.800680619] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libbehavior_server_core.so
+[component_container_isolated-15] [INFO] [1777824432.803905357] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<behavior_server::BehaviorServer>
+[component_container_isolated-15] [INFO] [1777824432.803969287] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<behavior_server::BehaviorServer>
+[component_container_isolated-15] [INFO] [1777824432.831457820] [behavior_server]: 
+[component_container_isolated-15]       behavior_server lifecycle node launched. 
+[component_container_isolated-15]       Waiting on external lifecycle transitions to activate
+[component_container_isolated-15]       See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/behavior_server' in container '/nav2_container'
+[component_container_isolated-15] [INFO] [1777824432.838781193] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libbt_navigator_core.so
+[component_container_isolated-15] [INFO] [1777824432.847332756] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_bt_navigator::BtNavigator>
+[component_container_isolated-15] [INFO] [1777824432.847385184] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_bt_navigator::BtNavigator>
+[component_container_isolated-15] [INFO] [1777824432.879851057] [bt_navigator]: 
+[component_container_isolated-15]       bt_navigator lifecycle node launched. 
+[component_container_isolated-15]       Waiting on external lifecycle transitions to activate
+[component_container_isolated-15]       See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-15] [INFO] [1777824432.882317155] [bt_navigator]: Creating
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/bt_navigator' in container '/nav2_container'
+[component_container_isolated-15] [INFO] [1777824432.885852475] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libwaypoint_follower_core.so
+[component_container_isolated-15] [INFO] [1777824432.890145213] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_waypoint_follower::WaypointFollower>
+[component_container_isolated-15] [INFO] [1777824432.890201268] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_waypoint_follower::WaypointFollower>
+[component_container_isolated-15] [INFO] [1777824432.918948027] [waypoint_follower]: 
+[component_container_isolated-15]       waypoint_follower lifecycle node launched. 
+[component_container_isolated-15]       Waiting on external lifecycle transitions to activate
+[component_container_isolated-15]       See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-15] [INFO] [1777824432.920628514] [waypoint_follower]: Creating
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/waypoint_follower' in container '/nav2_container'
+[component_container_isolated-15] [INFO] [1777824432.924410966] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libvelocity_smoother_core.so
+[component_container_isolated-15] [INFO] [1777824432.927048786] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_velocity_smoother::VelocitySmoother>
+[component_container_isolated-15] [INFO] [1777824432.927101885] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_velocity_smoother::VelocitySmoother>
+[component_container_isolated-15] [INFO] [1777824432.958857328] [velocity_smoother]: 
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/velocity_smoother' in container '/nav2_container'
+[component_container_isolated-15]       velocity_smoother lifecycle node launched. 
+[component_container_isolated-15]       Waiting on external lifecycle transitions to activate
+[component_container_isolated-15]       See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-15] [INFO] [1777824432.962044065] [nav2_container]: Load Library: /opt/ros/jazzy/lib/libcollision_monitor_core.so
+[component_container_isolated-15] [INFO] [1777824432.970770335] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_collision_monitor::CollisionMonitor>
+[component_container_isolated-15] [INFO] [1777824432.970825689] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_collision_monitor::CollisionMonitor>
+[component_container_isolated-15] [INFO] [1777824433.001995855] [collision_monitor]: 
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/collision_monitor' in container '/nav2_container'
+[component_container_isolated-15]       collision_monitor lifecycle node launched. 
+[component_container_isolated-15]       Waiting on external lifecycle transitions to activate
+[component_container_isolated-15]       See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[component_container_isolated-15] [INFO] [1777824433.005181360] [nav2_container]: Found class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-15] [INFO] [1777824433.005248957] [nav2_container]: Instantiate class: rclcpp_components::NodeFactoryTemplate<nav2_lifecycle_manager::LifecycleManager>
+[component_container_isolated-15] [INFO] [1777824433.029466605] [lifecycle_manager_navigation]: Creating
+[component_container_isolated-15] [INFO] [1777824433.035201974] [lifecycle_manager_navigation]: Creating and initializing lifecycle service clients
+[INFO] [launch_ros.actions.load_composable_nodes]: Loaded node '/lifecycle_manager_navigation' in container '/nav2_container'
+[component_container_isolated-15] [INFO] [1777824433.068010749] [lifecycle_manager_navigation]: Starting managed nodes bringup...
+[component_container_isolated-15] [INFO] [1777824433.068087543] [lifecycle_manager_navigation]: Configuring controller_server
+[component_container_isolated-15] [INFO] [1777824433.068387164] [controller_server]: Configuring controller interface
+[component_container_isolated-15] [INFO] [1777824433.068424454] [controller_server]: getting progress checker plugins..
+[component_container_isolated-15] [INFO] [1777824433.069125697] [controller_server]: getting goal checker plugins..
+[component_container_isolated-15] [INFO] [1777824433.069385714] [controller_server]: Controller frequency set to 10.0000Hz
+[component_container_isolated-15] [INFO] [1777824433.069474300] [local_costmap.local_costmap]: Configuring
+[component_container_isolated-15] [INFO] [1777824433.083200573] [local_costmap.local_costmap]: Using plugin "voxel_layer"
+[component_container_isolated-15] [INFO] [1777824433.092425577] [local_costmap.local_costmap]: Subscribed to Topics: scan
+[component_container_isolated-15] [INFO] [1777824433.113511671] [local_costmap.local_costmap]: Initialized plugin "voxel_layer"
+[component_container_isolated-15] [INFO] [1777824433.113552006] [local_costmap.local_costmap]: Using plugin "inflation_layer"
+[component_container_isolated-15] [INFO] [1777824433.115403263] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[component_container_isolated-15] [INFO] [1777824433.144512550] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[component_container_isolated-15] [INFO] [1777824433.145064674] [controller_server]: Controller Server has progress_checker  progress checkers available.
+[component_container_isolated-15] [INFO] [1777824433.146305407] [controller_server]: Created goal checker : general_goal_checker of type nav2_controller::SimpleGoalChecker
+[component_container_isolated-15] [INFO] [1777824433.147284321] [controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[component_container_isolated-15] [INFO] [1777824433.155413002] [controller_server]: Created controller : FollowPath of type dwb_core::DWBLocalPlanner
+[component_container_isolated-15] [INFO] [1777824433.157525237] [controller_server]: Setting transform_tolerance to 0.100000
+[component_container_isolated-15] [INFO] [1777824433.184960139] [controller_server]: Using critic "RotateToGoal" (dwb_critics::RotateToGoalCritic)
+[component_container_isolated-15] [INFO] [1777824433.186462903] [controller_server]: Critic plugin initialized
+[component_container_isolated-15] [INFO] [1777824433.186835080] [controller_server]: Using critic "Oscillation" (dwb_critics::OscillationCritic)
+[component_container_isolated-15] [INFO] [1777824433.187889545] [controller_server]: Critic plugin initialized
+[component_container_isolated-15] [INFO] [1777824433.188119154] [controller_server]: Using critic "BaseObstacle" (dwb_critics::BaseObstacleCritic)
+[component_container_isolated-15] [INFO] [1777824433.188537869] [controller_server]: Critic plugin initialized
+[component_container_isolated-15] [INFO] [1777824433.188792345] [controller_server]: Using critic "GoalAlign" (dwb_critics::GoalAlignCritic)
+[component_container_isolated-15] [INFO] [1777824433.190864034] [controller_server]: Critic plugin initialized
+[component_container_isolated-15] [INFO] [1777824433.191125053] [controller_server]: Using critic "PathAlign" (dwb_critics::PathAlignCritic)
+[component_container_isolated-15] [INFO] [1777824433.192852438] [controller_server]: Critic plugin initialized
+[component_container_isolated-15] [INFO] [1777824433.193131711] [controller_server]: Using critic "PathDist" (dwb_critics::PathDistCritic)
+[component_container_isolated-15] [INFO] [1777824433.194656646] [controller_server]: Critic plugin initialized
+[component_container_isolated-15] [INFO] [1777824433.194990621] [controller_server]: Using critic "GoalDist" (dwb_critics::GoalDistCritic)
+[component_container_isolated-15] [INFO] [1777824433.196615624] [controller_server]: Critic plugin initialized
+[component_container_isolated-15] [INFO] [1777824433.196662141] [controller_server]: Controller Server has FollowPath  controllers available.
+[component_container_isolated-15] [INFO] [1777824433.218874775] [lifecycle_manager_navigation]: Configuring smoother_server
+[component_container_isolated-15] [INFO] [1777824433.219145462] [smoother_server]: Configuring smoother server
+[component_container_isolated-15] [INFO] [1777824433.232275658] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother
+[component_container_isolated-15] [INFO] [1777824433.233659800] [smoother_server]: Smoother Server has simple_smoother  smoothers available.
+[component_container_isolated-15] [INFO] [1777824433.246840862] [lifecycle_manager_navigation]: Configuring planner_server
+[component_container_isolated-15] [INFO] [1777824433.247118622] [planner_server]: Configuring
+[component_container_isolated-15] [INFO] [1777824433.247186419] [global_costmap.global_costmap]: Configuring
+[component_container_isolated-15] [INFO] [1777824433.263610423] [global_costmap.global_costmap]: Using plugin "static_layer"
+[component_container_isolated-15] [INFO] [1777824433.265769226] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability
+[component_container_isolated-15] [INFO] [1777824433.268809358] [global_costmap.global_costmap]: Initialized plugin "static_layer"
+[component_container_isolated-15] [INFO] [1777824433.268882545] [global_costmap.global_costmap]: Using plugin "obstacle_layer"
+[component_container_isolated-15] [INFO] [1777824433.270583180] [global_costmap.global_costmap]: Subscribed to Topics: scan
+[component_container_isolated-15] [INFO] [1777824433.281356343] [global_costmap.global_costmap]: Initialized plugin "obstacle_layer"
+[component_container_isolated-15] [INFO] [1777824433.281420092] [global_costmap.global_costmap]: Using plugin "virtual_layer"
+[component_container_isolated-15] [INFO] [1777824433.292522562] [global_costmap.global_costmap.virtual_layer]: Parsing 0 WKT forms from parameters in frame 'map' with default cost 254...
+[lifecycle_manager-14] [INFO] [1777824433.310587989] [lifecycle_manager_application]: Managed nodes are active
+[component_container_isolated-15] [INFO] [1777824433.315957825] [global_costmap.global_costmap.virtual_layer]: Visualization enabled at 2.0 Hz
+[component_container_isolated-15] [INFO] [1777824433.316022977] [global_costmap.global_costmap.virtual_layer]: VirtualLayer initialized: 0 circles, 0 lines, 0 polygons
+[component_container_isolated-15] [INFO] [1777824433.316035911] [global_costmap.global_costmap]: Initialized plugin "virtual_layer"
+[component_container_isolated-15] [INFO] [1777824433.316043205] [global_costmap.global_costmap]: Using plugin "inflation_layer"
+[component_container_isolated-15] [INFO] [1777824433.317966736] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[component_container_isolated-15] [INFO] [1777824433.359896350] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 310 X 210 at 0.010000 m/pix
+[component_container_isolated-15] [INFO] [1777824433.360951686] [global_costmap.global_costmap.virtual_layer]: Cleared all shapes (0 total)
+[jenga_manager_node-13] [INFO] [1777824433.361242591] [jenga_manager]: Nettoyage terminé. Ajout des Jengas...
+[jenga_manager_node-13] [INFO] [1777824433.361859446] [jenga_manager]: Jenga groups.A0 added.
+[jenga_manager_node-13] [INFO] [1777824433.362212547] [jenga_manager]: Jenga groups.A1 added.
+[jenga_manager_node-13] [INFO] [1777824433.362431317] [jenga_manager]: Jenga groups.A2 added.
+[jenga_manager_node-13] [INFO] [1777824433.362619199] [jenga_manager]: Jenga groups.A3 added.
+[jenga_manager_node-13] [INFO] [1777824433.362775181] [jenga_manager]: Jenga groups.B0 added.
+[jenga_manager_node-13] [INFO] [1777824433.362941292] [jenga_manager]: Jenga groups.B1 added.
+[jenga_manager_node-13] [INFO] [1777824433.363218571] [jenga_manager]: Jenga groups.B2 added.
+[jenga_manager_node-13] [INFO] [1777824433.363434536] [jenga_manager]: Jenga groups.B3 added.
+[jenga_manager_node-13] [INFO] [1777824433.363608852] [jenga_manager]: Jenga groups.C0 added.
+[jenga_manager_node-13] [INFO] [1777824433.363785403] [jenga_manager]: Jenga groups.C1 added.
+[jenga_manager_node-13] [INFO] [1777824433.363976480] [jenga_manager]: Jenga groups.C2 added.
+[jenga_manager_node-13] [INFO] [1777824433.364317559] [jenga_manager]: Jenga groups.C3 added.
+[jenga_manager_node-13] [INFO] [1777824433.364520379] [jenga_manager]: Jenga groups.D0 added.
+[jenga_manager_node-13] [INFO] [1777824433.364757022] [jenga_manager]: Jenga groups.D1 added.
+[jenga_manager_node-13] [INFO] [1777824433.365005397] [jenga_manager]: Jenga groups.D2 added.
+[jenga_manager_node-13] [INFO] [1777824433.365430874] [jenga_manager]: Jenga groups.D3 added.
+[jenga_manager_node-13] [INFO] [1777824433.365641649] [jenga_manager]: Jenga groups.E0 added.
+[jenga_manager_node-13] [INFO] [1777824433.365821555] [jenga_manager]: Jenga groups.E1 added.
+[jenga_manager_node-13] [INFO] [1777824433.366096250] [jenga_manager]: Jenga groups.E2 added.
+[jenga_manager_node-13] [INFO] [1777824433.366400019] [jenga_manager]: Jenga groups.E3 added.
+[jenga_manager_node-13] [INFO] [1777824433.366683780] [jenga_manager]: Jenga groups.F0 added.
+[jenga_manager_node-13] [INFO] [1777824433.367440146] [jenga_manager]: Jenga groups.F1 added.
+[jenga_manager_node-13] [INFO] [1777824433.367949811] [jenga_manager]: Jenga groups.F2 added.
+[jenga_manager_node-13] [INFO] [1777824433.368484021] [jenga_manager]: Jenga groups.F3 added.
+[jenga_manager_node-13] [INFO] [1777824433.368864754] [jenga_manager]: Jenga groups.G0 added.
+[jenga_manager_node-13] [INFO] [1777824433.369445581] [jenga_manager]: Jenga groups.G1 added.
+[jenga_manager_node-13] [INFO] [1777824433.369765230] [jenga_manager]: Jenga groups.G2 added.
+[jenga_manager_node-13] [INFO] [1777824433.370054592] [jenga_manager]: Jenga groups.G3 added.
+[jenga_manager_node-13] [INFO] [1777824433.370683940] [jenga_manager]: Jenga groups.H0 added.
+[jenga_manager_node-13] [INFO] [1777824433.371351450] [jenga_manager]: Jenga groups.H1 added.
+[jenga_manager_node-13] [INFO] [1777824433.371935354] [jenga_manager]: Jenga groups.H2 added.
+[jenga_manager_node-13] [INFO] [1777824433.372591622] [jenga_manager]: Jenga groups.H3 added.
+[jenga_manager_node-13] [INFO] [1777824433.372626428] [jenga_manager]: Chargement initial terminé.
+[component_container_isolated-15] [INFO] [1777824433.375064182] [planner_server]: Created global planner plugin GridBased of type nav2_smac_planner::SmacPlanner2D
+[component_container_isolated-15] [INFO] [1777824433.375216277] [planner_server]: Configuring GridBased of type SmacPlanner2D
+[component_container_isolated-15] [ERROR] [1777824433.378593691] [planner_server]: Inflation layer either not found or inflation is not set sufficiently for optimized non-circular collision checking capabilities. It is HIGHLY recommended to set the inflation radius to be at MINIMUM half of the robot's largest cross-section. See github.com/ros-planning/navigation2/tree/main/nav2_smac_planner#potential-fields for full instructions. This will substantially impact run-time performance.
+[component_container_isolated-15] [INFO] [1777824433.382652932] [planner_server]: Configured plugin GridBased of type SmacPlanner2D with tolerance 0.25, maximum iterations 100000, max on approach iterations 1000, and allowing unknown traversal.
+[component_container_isolated-15] [INFO] [1777824433.382742410] [planner_server]: Planner Server has GridBased  planners available.
+[component_container_isolated-15] [INFO] [1777824433.405757045] [lifecycle_manager_navigation]: Configuring behavior_server
+[component_container_isolated-15] [INFO] [1777824433.406009218] [behavior_server]: Configuring
+[component_container_isolated-15] [INFO] [1777824433.413389918] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors::Spin
+[component_container_isolated-15] [INFO] [1777824433.415927399] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors::BackUp
+[component_container_isolated-15] [INFO] [1777824433.418566231] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors::DriveOnHeading
+[component_container_isolated-15] [INFO] [1777824433.421166670] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors::AssistedTeleop
+[component_container_isolated-15] [INFO] [1777824433.425801128] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors::Wait
+[component_container_isolated-15] [INFO] [1777824433.433056344] [behavior_server]: Configuring spin
+[component_container_isolated-15] [INFO] [1777824433.451119297] [behavior_server]: Configuring backup
+[component_container_isolated-15] [INFO] [1777824433.463120790] [behavior_server]: Configuring drive_on_heading
+[component_container_isolated-15] [INFO] [1777824433.478718988] [behavior_server]: Configuring assisted_teleop
+[component_container_isolated-15] [INFO] [1777824433.496778394] [behavior_server]: Configuring wait
+[component_container_isolated-15] [INFO] [1777824433.512002392] [lifecycle_manager_navigation]: Configuring velocity_smoother
+[component_container_isolated-15] [INFO] [1777824433.512253842] [velocity_smoother]: Configuring velocity smoother
+[component_container_isolated-15] [INFO] [1777824433.521417812] [lifecycle_manager_navigation]: Configuring collision_monitor
+[component_container_isolated-15] [INFO] [1777824433.521817811] [collision_monitor]: Configuring
+[component_container_isolated-15] [INFO] [1777824433.533128621] [collision_monitor]: [scan]: Creating Scan
+[component_container_isolated-15] [INFO] [1777824433.537743753] [collision_monitor]: [FootprintApproach]: Creating Polygon
+[component_container_isolated-15] [INFO] [1777824433.539485715] [collision_monitor]: [FootprintApproach]: Polygon points are not defined. Using dynamic subscription instead.
+[component_container_isolated-15] [INFO] [1777824433.542829175] [collision_monitor]: [FootprintApproach]: Making footprint subscriber on /local_costmap/published_footprint topic
+[component_container_isolated-15] [INFO] [1777824433.555923535] [lifecycle_manager_navigation]: Configuring bt_navigator
+[component_container_isolated-15] [INFO] [1777824433.556209590] [bt_navigator]: Configuring
+[component_container_isolated-15] [INFO] [1777824433.564021869] [bt_navigator]: Creating navigator id navigate_to_pose of type nav2_bt_navigator::NavigateToPoseNavigator
+[component_container_isolated-15] [INFO] [1777824433.744025960] [bt_navigator]: Creating navigator id navigate_through_poses of type nav2_bt_navigator::NavigateThroughPosesNavigator
+[component_container_isolated-15] [INFO] [1777824433.812533982] [lifecycle_manager_navigation]: Configuring waypoint_follower
+[component_container_isolated-15] [INFO] [1777824433.812740699] [waypoint_follower]: Configuring
+[component_container_isolated-15] [INFO] [1777824433.860624142] [waypoint_follower]: Created waypoint_task_executor : wait_at_waypoint of type nav2_waypoint_follower::WaitAtWaypoint
+[component_container_isolated-15] [INFO] [1777824433.861940427] [lifecycle_manager_navigation]: Activating controller_server
+[component_container_isolated-15] [INFO] [1777824433.862097661] [controller_server]: Activating
+[component_container_isolated-15] [INFO] [1777824433.862135252] [local_costmap.local_costmap]: Activating
+[component_container_isolated-15] [INFO] [1777824433.862145681] [local_costmap.local_costmap]: Checking transform
+[component_container_isolated-15] [INFO] [1777824433.862405888] [local_costmap.local_costmap]: start
+[component_container_isolated-15] [INFO] [1777824434.214405293] [controller_server]: Creating bond (controller_server) to lifecycle manager.
+[component_container_isolated-15] [INFO] [1777824434.321078922] [lifecycle_manager_navigation]: Server controller_server connected with bond.
+[component_container_isolated-15] [INFO] [1777824434.321134295] [lifecycle_manager_navigation]: Activating smoother_server
+[component_container_isolated-15] [INFO] [1777824434.321588376] [smoother_server]: Activating
+[component_container_isolated-15] [INFO] [1777824434.321638069] [smoother_server]: Creating bond (smoother_server) to lifecycle manager.
+[component_container_isolated-15] [INFO] [1777824434.434732841] [lifecycle_manager_navigation]: Server smoother_server connected with bond.
+[component_container_isolated-15] [INFO] [1777824434.434773998] [lifecycle_manager_navigation]: Activating planner_server
+[component_container_isolated-15] [INFO] [1777824434.435098886] [planner_server]: Activating
+[component_container_isolated-15] [INFO] [1777824434.435202921] [global_costmap.global_costmap]: Activating
+[component_container_isolated-15] [INFO] [1777824434.435220654] [global_costmap.global_costmap]: Checking transform
+[component_container_isolated-15] [INFO] [1777824434.435373009] [global_costmap.global_costmap]: start
+[rviz2-7] [INFO] [1777824434.970158915] [rviz2]: Trying to create a map of size 310 x 210 using 1 swatches
+[component_container_isolated-15] [INFO] [1777824434.986940840] [planner_server]: Activating plugin GridBased of type SmacPlanner2D
+[component_container_isolated-15] [INFO] [1777824434.992827903] [planner_server]: Creating bond (planner_server) to lifecycle manager.
+[component_container_isolated-15] [INFO] [1777824435.110119945] [lifecycle_manager_navigation]: Server planner_server connected with bond.
+[component_container_isolated-15] [INFO] [1777824435.110190898] [lifecycle_manager_navigation]: Activating behavior_server
+[component_container_isolated-15] [INFO] [1777824435.110731971] [behavior_server]: Activating
+[component_container_isolated-15] [INFO] [1777824435.110763600] [behavior_server]: Activating spin
+[component_container_isolated-15] [INFO] [1777824435.110814836] [behavior_server]: Activating backup
+[component_container_isolated-15] [INFO] [1777824435.110832609] [behavior_server]: Activating drive_on_heading
+[component_container_isolated-15] [INFO] [1777824435.110848679] [behavior_server]: Activating assisted_teleop
+[component_container_isolated-15] [INFO] [1777824435.110879046] [behavior_server]: Activating wait
+[component_container_isolated-15] [INFO] [1777824435.110903362] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[component_container_isolated-15] [INFO] [1777824435.220299238] [lifecycle_manager_navigation]: Server behavior_server connected with bond.
+[component_container_isolated-15] [INFO] [1777824435.220374569] [lifecycle_manager_navigation]: Activating velocity_smoother
+[component_container_isolated-15] [INFO] [1777824435.220786009] [velocity_smoother]: Activating
+[component_container_isolated-15] [INFO] [1777824435.220840361] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.
+[component_container_isolated-15] [INFO] [1777824435.331486858] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.
+[component_container_isolated-15] [INFO] [1777824435.331534658] [lifecycle_manager_navigation]: Activating collision_monitor
+[component_container_isolated-15] [INFO] [1777824435.331914970] [collision_monitor]: Activating
+[component_container_isolated-15] [INFO] [1777824435.331997154] [collision_monitor]: Creating bond (collision_monitor) to lifecycle manager.
+[component_container_isolated-15] [INFO] [1777824435.440146345] [lifecycle_manager_navigation]: Server collision_monitor connected with bond.
+[component_container_isolated-15] [INFO] [1777824435.440203462] [lifecycle_manager_navigation]: Activating bt_navigator
+[component_container_isolated-15] [INFO] [1777824435.440602740] [bt_navigator]: Activating
+[component_container_isolated-15] [INFO] [1777824435.605182648] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[component_container_isolated-15] [INFO] [1777824435.718536225] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.
+[component_container_isolated-15] [INFO] [1777824435.718584155] [lifecycle_manager_navigation]: Activating waypoint_follower
+[component_container_isolated-15] [INFO] [1777824435.718916537] [waypoint_follower]: Activating
+[component_container_isolated-15] [INFO] [1777824435.718958476] [waypoint_follower]: Creating bond (waypoint_follower) to lifecycle manager.
+[component_container_isolated-15] [INFO] [1777824435.829025318] [lifecycle_manager_navigation]: Server waypoint_follower connected with bond.
+[component_container_isolated-15] [INFO] [1777824435.829089999] [lifecycle_manager_navigation]: Managed nodes are active
+[component_container_isolated-15] [INFO] [1777824435.829105528] [lifecycle_manager_navigation]: Creating bond timer...

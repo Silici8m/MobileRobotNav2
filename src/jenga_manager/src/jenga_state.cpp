@@ -17,12 +17,16 @@ void WorldState::addJenga(std::shared_ptr<Jenga> jenga) {
 void WorldState::removeJenga(std::string id) {
     auto it = all_jengas_.find(id);
     if (it != all_jengas_.end()) {
-        std::string uuid_to_remove = it->second->uuid;
+        std::string uuid_to_remove_global = it->second->uuid_global;
+        std::string uuid_to_remove_local = it->second->uuid_local;
         this->all_jengas_.erase(it);
 
         // Si le jenga avait un UUID Nav2 et qu'on a un callback
-        if (!uuid_to_remove.empty() && on_remove_jenga_) {
-            on_remove_jenga_(uuid_to_remove);
+        if (!uuid_to_remove_global.empty() && on_remove_jenga_) {
+            on_remove_jenga_(uuid_to_remove_global);
+        }
+        if (!uuid_to_remove_local.empty() && on_remove_jenga_) {
+            on_remove_jenga_(uuid_to_remove_local);
         }
     }
 }

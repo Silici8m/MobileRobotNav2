@@ -8,7 +8,8 @@
 Jenga::Jenga(std::string id, double x, double y, double theta, std::string color)
     : id(id), x(x), y(y), theta(theta), color(color) {
     // L'UUID sera assigné plus tard par le service Nav2
-    this->uuid = ""; 
+    this->uuid_global = ""; 
+    this->uuid_local = ""; 
 }
 
 /**
