@@ -28,6 +28,7 @@ ssh $PI_USER@$PI_IP "cd ~/$WORKSPACE_NAME && docker build -t $DOCKER_IMAGE_NAME 
 
 ssh $PI_USER@$PI_IP "docker rm -f $DOCKER_CONTAINER_NAME 2>/dev/null || true"
 
+
 ssh -t $PI_USER@$PI_IP "docker run --name $DOCKER_CONTAINER_NAME \
     --network host \
     --ipc host \
