@@ -1,18 +1,21 @@
 #!/bin/bash
 set -e
 
-# Sur un Pi, on préfère souvent "Release" à "RelWithDebInfo" pour gagner en performance d'exécution
+# Set the default build type
 BUILD_TYPE=Release
 
+DEFAULT_IGNORE=(
+  "pcb_simulation"
+)
 
-# Limite la compilation à 2 cœurs en simultané pour éviter le freeze du Pi
-export MAKEFLAGS="-j2"
+SIMULATION_PACKAGES=(
+  "pcb_simulation"
+  "ldlidar_stl_ros2"
+)
 
 colcon build \
-        --merge-install \
-        --symlink-install \
-        --executor sequential \
-        --cmake-args "-DCMAKE_BUILD_TYPE=$BUILD_TYPE" \
-        -Wall -Wextra -Wpedantic
-
-echo "Compilation terminée !"
+  --merge-install \
+  --symlink-install \
+  --cmake-args "-DCMAKE_BUILD_TYPE=$BUILD_TYPE" "-DCMAKE_EXPORT_COMPILE_COMMANDS=On" \
+  -Wall -Wextra -Wpedantic \
+  --packages-ignore ${SIMULATION_PACKAGES[@]}

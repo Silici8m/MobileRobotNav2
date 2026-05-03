@@ -1,0 +1,38 @@
+services:
+  robot:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.pi
+      args:
+        WORKSPACE: /workspaces/MobileRobotNav2
+      pull: true
+    network_mode: host
+    ipc: host
+    privileged: true
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    environment:
+      - DISPLAY=${DISPLAY}
+      - XAUTHORITY=${XAUTHORITY}
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
+      - PULSE_SERVER=${PULSE_SERVER}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /mnt/wslg:/mnt/wslg
+      - /run/user/1000:/run/user/1000
+      - /dev/input:/dev/input
+      - ..:/workspaces/MobileRobotNav2
+    devices:
+      - /dev/dri/renderD128
+      - /dev/bus/usb:/dev/bus/usb
+      - /dev/input/js0:/dev/input/js0
+      - /dev/ttyUSB0:/dev/ttyUSB0
+      - /dev/ttyACM0:/dev/ttyACM0
+    user: ros
+    working_dir: /workspaces/MobileRobotNav2
+    stdin_open: true
+    tty: true
