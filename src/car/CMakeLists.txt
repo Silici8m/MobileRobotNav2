@@ -14,11 +14,18 @@ find_package(nav_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 
+add_executable(car_controller src/car_controller.cpp)
+ament_target_dependencies(car_controller rclcpp geometry_msgs sensor_msgs)
+
 install(
   DIRECTORY config
   DESTINATION share/${PROJECT_NAME}
 )
 
+install(TARGETS
+  car_controller
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

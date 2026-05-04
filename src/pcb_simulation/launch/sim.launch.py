@@ -113,7 +113,7 @@ def generate_launch_description():
         ),
 
         Node(
-            package="car",
+            package="pcb_simulation",
             executable="gt_node",
             parameters=[{'use_sim_time': True}]
         ),
